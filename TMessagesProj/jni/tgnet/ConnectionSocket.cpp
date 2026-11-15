@@ -89,7 +89,8 @@ void ConnectionSocket::openConnection(std::string address, uint16_t port, std::s
 
     if (!proxyAddress->empty()) {
         if (LOGS_ENABLED) DEBUG_D("connection(%p) connecting via proxy %s:%d secret[%d]", this, proxyAddress->c_str(), proxyPort, (int) proxySecret->size());
-        if ((socketFd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        const bool proxyIpv6 = inet_pton(AF_INET6, proxyAddress->c_str(), &socketAddress6.sin6_addr) == 1;
+        if ((socketFd = socket(proxyIpv6 ? AF_INET6 : AF_INET, SOCK_STREAM, 0)) < 0) {
             if (LOGS_ENABLED) DEBUG_E("connection(%p) can't create proxy socket", this);
             closeSocket(1, -1);
             return;
@@ -117,6 +118,8 @@ void ConnectionSocket::openConnection(std::string address, uint16_t port, std::s
         }
         socketAddress.sin_family = AF_INET;
         socketAddress.sin_port = htons(proxyPort);
+        socketAddress6.sin6_family = AF_INET6;
+        socketAddress6.sin6_port = htons(proxyPort);
         bool continueCheckAddress;
         if (inet_pton(AF_INET, proxyAddress->c_str(), &socketAddress.sin_addr.s_addr) != 1) {
             continueCheckAddress = true;
@@ -126,7 +129,7 @@ void ConnectionSocket::openConnection(std::string address, uint16_t port, std::s
             continueCheckAddress = false;
         }
         if (continueCheckAddress) {
-            if (inet_pton(AF_INET6, proxyAddress->c_str(), &socketAddress6.sin6_addr.s6_addr) != 1) {
+            if (!proxyIpv6) {
                 continueCheckAddress = true;
                 if (LOGS_ENABLED) DEBUG_D("connection(%p) not ipv6 address %s", this, proxyAddress->c_str());
             } else {
