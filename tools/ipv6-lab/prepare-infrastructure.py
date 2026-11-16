@@ -35,6 +35,7 @@ import urllib.parse
 import urllib.request
 import uuid
 import zipfile
+from submodule_state import inspect_submodules
 
 
 GRADLE_VERSION = "8.13"
@@ -366,8 +367,15 @@ def main():
 
         status = run("submodule state", ["git", "submodule", "status", "--recursive"], capture=True)
         (report / "submodules.txt").write_text(status + "\n")
-        clean_submodules = all(line.startswith(" ") for line in status.splitlines() if line)
-        state["submodules"] = {"count": len(status.splitlines()), "all_at_pinned_commits": clean_submodules}
+        module_state = inspect_submodules(repo, status)
+        clean_submodules = not module_state["blocking"]
+        state["submodules"] = {
+            "count": len(status.splitlines()),
+            "all_at_pinned_commits": clean_submodules and not module_state["intentionally_skipped"],
+            "required_at_pinned_commits": clean_submodules,
+            "intentionally_skipped": module_state["intentionally_skipped"],
+            "blocking": module_state["blocking"],
+        }
         if prepare_sources and not clean_submodules:
             raise PreparationError("Submodules are missing, modified or not at their pinned commits")
         archive_results = []

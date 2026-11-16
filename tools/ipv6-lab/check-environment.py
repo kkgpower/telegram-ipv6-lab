@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+from submodule_state import inspect_submodules
 
 
 def command(*args):
@@ -30,9 +31,8 @@ def main():
     _, commit = command("git", "-C", str(repo), "rev-parse", "HEAD")
     _, branch = command("git", "-C", str(repo), "branch", "--show-current")
     _, tracked_changes = command("git", "-C", str(repo), "status", "--porcelain", "--untracked-files=no")
-    _, submodules = command("git", "-C", str(repo), "submodule", "status", "--recursive")
-    missing_submodules = [line.split()[1] for line in submodules.splitlines()
-                          if line.startswith("-") and len(line.split()) > 1]
+    modules_state = inspect_submodules(repo)
+    missing_submodules = modules_state["blocking"]
     fixed_path = "TMessagesProj/jni/tgnet/ConnectionSocket.cpp"
     _, fixed_blob = command("git", "-C", str(repo), "rev-parse", "7f67b8a:" + fixed_path)
     _, current_blob = command("git", "-C", str(repo), "hash-object", fixed_path)
@@ -98,6 +98,7 @@ def main():
         "sdk_root": str(sdk) if sdk else None,
         "sdk_packages_present": sdk_checks,
         "uninitialized_submodules": missing_submodules,
+        "intentionally_skipped_submodules": modules_state["intentionally_skipped"],
         "missing_arm64_native_archives": len(missing_prebuilts),
         "own_api_parameters_present_and_format_valid": api_format and not shipped_pair,
         "free_disk_bytes": shutil.disk_usage(repo).free,

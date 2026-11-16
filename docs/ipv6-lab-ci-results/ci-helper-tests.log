@@ -15,8 +15,13 @@ test_temp_must_not_contain_or_be_inside_checkout (test_ci_build_apk.CIBuildGuard
 test_tracked_source_changes_rejected (test_ci_build_apk.CIBuildGuards.test_tracked_source_changes_rejected) ... ok
 test_validation_dispatch_does_not_sign (test_ci_build_apk.CIBuildGuards.test_validation_dispatch_does_not_sign) ... ok
 test_wrong_workflow_ref_rejected (test_ci_build_apk.CIBuildGuards.test_wrong_workflow_ref_rejected) ... ok
+test_missing_required_module_blocks (test_submodule_state.SubmoduleReadiness.test_missing_required_module_blocks) ... ok
+test_policy_is_read_from_committed_gitmodules (test_submodule_state.SubmoduleReadiness.test_policy_is_read_from_committed_gitmodules) ... ok
+test_unknown_output_is_not_silently_accepted (test_submodule_state.SubmoduleReadiness.test_unknown_output_is_not_silently_accepted) ... ok
+test_upstream_disabled_suite_does_not_block_required_modules (test_submodule_state.SubmoduleReadiness.test_upstream_disabled_suite_does_not_block_required_modules) ... ok
+test_wrong_commit_is_not_excused_by_update_none (test_submodule_state.SubmoduleReadiness.test_wrong_commit_is_not_excused_by_update_none) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.014s
+Ran 22 tests in 0.037s
 
 OK

@@ -1,0 +1,51 @@
+{
+  "status": "failed",
+  "api_parameters_used": false,
+  "apk_built": false,
+  "source_commit": "d79ae05d67b77676683b645614dddc12e460a1c7",
+  "source_has_tracked_changes": false,
+  "java": {
+    "home": "/usr/lib/jvm/temurin-17-jdk-amd64",
+    "version": "openjdk version \"17.0.21\" 2026-10-20"
+  },
+  "sdk_root": "/usr/local/lib/android/sdk",
+  "prepare_sources_requested": true,
+  "sdk_install_skipped": false,
+  "free_space_reserve_gib": 4.0,
+  "gradle": {
+    "executable": "/home/runner/work/_temp/telegram-ipv6-lab-infra-tools/gradle-8.13/bin/gradle",
+    "version": "8.13",
+    "download_sha256_verified_this_run": false,
+    "expected_archive_sha256": "20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78"
+  },
+  "sdkmanager": "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager",
+  "sdk_proxy_enabled": false,
+  "sdk_packages": {
+    "platform-tools": {
+      "present": true,
+      "revision": "37.0.1"
+    },
+    "platforms;android-36": {
+      "present": true,
+      "revision": "2"
+    },
+    "build-tools;36.0.0": {
+      "present": true,
+      "revision": "36.0.0"
+    },
+    "ndk;27.2.12479018": {
+      "present": true,
+      "revision": "27.2.12479018"
+    },
+    "cmake;3.22.1": {
+      "present": true,
+      "revision": "3.22.1"
+    }
+  },
+  "submodules": {
+    "count": 23,
+    "all_at_pinned_commits": false
+  },
+  "failed_stage": "submodule state",
+  "diagnostic": "Submodules are missing, modified or not at their pinned commits"
+}

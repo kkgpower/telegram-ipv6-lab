@@ -6,6 +6,19 @@ on:
       - ci/ipv6-lab-apk-infrastructure
     tags:
       - ipv6-lab-build-*
+    paths:
+      - .github/workflows/ipv6-lab.yml
+      - tools/ipv6-lab/**
+      - TMessagesProj/**
+      - TMessagesProj_App/**
+      - TMessagesProj_Modules/**
+      - buildSrc/**
+      - gradle/**
+      - gradlew
+      - build.gradle
+      - settings.gradle
+      - gradle.properties
+      - .gitmodules
   workflow_dispatch:
     inputs:
       mode:
