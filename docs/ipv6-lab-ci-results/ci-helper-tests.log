@@ -22,6 +22,6 @@ test_upstream_disabled_suite_does_not_block_required_modules (test_submodule_sta
 test_wrong_commit_is_not_excused_by_update_none (test_submodule_state.SubmoduleReadiness.test_wrong_commit_is_not_excused_by_update_none) ... ok
 
 ----------------------------------------------------------------------
-Ran 22 tests in 0.037s
+Ran 22 tests in 0.070s
 
 OK

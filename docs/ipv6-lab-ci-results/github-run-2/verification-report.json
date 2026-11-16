@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-11-16T08:49:49.613044+00:00",
+  "commit": "3d53a72d9cb9973b66650e23a19c72edb808df3d",
+  "mode": "full-infrastructure-without-apk",
+  "checks": {
+    "android-connection-socket": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.87,
+      "aarch64_elf_relocatable": true
+    },
+    "cmake-configure": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.92
+    },
+    "android-tgnet": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 23.12
+    },
+    "gradle-dependency-metadata": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 128.26
+    }
+  },
+  "passed": true,
+  "api_parameters_used": false,
+  "apk_built": false,
+  "limitations": "No complete application link, APK packaging, MTProto authentication or Android device test. Gradle dependency report verifies metadata, not all future artifact transforms."
+}

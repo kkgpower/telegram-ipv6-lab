@@ -1,0 +1,11 @@
+{
+  "run_id": 43833803895,
+  "url": "https://github.com/kkgpower/telegram-ipv6-lab/actions/runs/43833803895",
+  "commit": "3d53a72d9cb9973b66650e23a19c72edb808df3d",
+  "validation": "success",
+  "signed_apk_job": "skipped",
+  "api_parameters_used": false,
+  "apk_built": false,
+  "artifact_id": 14209343208,
+  "artifact_sha256": "cefadbd8a81ae6e46188a2d9ce016bb99887e9f9eaf1888e9037d27b68fb0099"
+}

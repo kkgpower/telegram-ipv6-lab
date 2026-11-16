@@ -1,0 +1,78 @@
+{
+  "initial": {
+    "checked_at_utc": "2026-11-16T08:46:18.397772+00:00",
+    "disk_total_bytes": 154894188544,
+    "repo_free_bytes": 90617634816,
+    "sdk_disk_total_bytes": 154894188544,
+    "sdk_free_bytes": 90617634816,
+    "tool_directory_disk_total_bytes": 154894188544,
+    "tool_directory_free_bytes": 90617634816,
+    "host_logical_cpus": 4,
+    "runner_image": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261111.370.1",
+      "RUNNER_ARCH": "X64",
+      "RUNNER_OS": "Linux"
+    },
+    "host_MemTotal_bytes": 16760344576,
+    "host_MemAvailable_bytes": 15512813568,
+    "effective_cpu_capacity_cores": 4
+  },
+  "SDK installation": {
+    "checked_at_utc": "2026-11-16T08:46:18.964725+00:00",
+    "disk_total_bytes": 154894188544,
+    "repo_free_bytes": 90617634816,
+    "sdk_disk_total_bytes": 154894188544,
+    "sdk_free_bytes": 90617634816,
+    "tool_directory_disk_total_bytes": 154894188544,
+    "tool_directory_free_bytes": 90617634816,
+    "host_logical_cpus": 4,
+    "runner_image": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261111.370.1",
+      "RUNNER_ARCH": "X64",
+      "RUNNER_OS": "Linux"
+    },
+    "host_MemTotal_bytes": 16760344576,
+    "host_MemAvailable_bytes": 15553646592,
+    "effective_cpu_capacity_cores": 4
+  },
+  "source checkout": {
+    "checked_at_utc": "2026-11-16T08:46:39.769080+00:00",
+    "disk_total_bytes": 154894188544,
+    "repo_free_bytes": 88474312704,
+    "sdk_disk_total_bytes": 154894188544,
+    "sdk_free_bytes": 88474312704,
+    "tool_directory_disk_total_bytes": 154894188544,
+    "tool_directory_free_bytes": 88474312704,
+    "host_logical_cpus": 4,
+    "runner_image": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261111.370.1",
+      "RUNNER_ARCH": "X64",
+      "RUNNER_OS": "Linux"
+    },
+    "host_MemTotal_bytes": 16760344576,
+    "host_MemAvailable_bytes": 14956965888,
+    "effective_cpu_capacity_cores": 4
+  },
+  "final": {
+    "checked_at_utc": "2026-11-16T08:47:16.397314+00:00",
+    "disk_total_bytes": 154894188544,
+    "repo_free_bytes": 86592565248,
+    "sdk_disk_total_bytes": 154894188544,
+    "sdk_free_bytes": 86592565248,
+    "tool_directory_disk_total_bytes": 154894188544,
+    "tool_directory_free_bytes": 86592565248,
+    "host_logical_cpus": 4,
+    "runner_image": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261111.370.1",
+      "RUNNER_ARCH": "X64",
+      "RUNNER_OS": "Linux"
+    },
+    "host_MemTotal_bytes": 16760344576,
+    "host_MemAvailable_bytes": 15410868224,
+    "effective_cpu_capacity_cores": 4
+  }
+}

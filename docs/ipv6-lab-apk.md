@@ -1,14 +1,20 @@
 # Неофициальный IPv6 Lab APK
 
-Дата проверки: 2026-11-15. Ветка: `fix/mtproto-proxy-ipv6-literal`.
+Исходная проверка: 2026-11-15; инфраструктура обновлена 2026-11-16 в отдельной
+ветке `ci/ipv6-lab-apk-infrastructure` от `fix/mtproto-proxy-ipv6-literal`.
 Исходное исправление IPv6: `7f67b8a68803f32d72364f867694b2bfaef266ac`.
 
 **APK пока не получен.** Реализован отдельный opt-in профиль сборки, подготовлены
 JDK, Gradle, Android command-line tools и настоящий локальный тестовый ключ.
 Пользовательские Telegram API ID/API hash будут предоставлены позднее; сборка
-намеренно останавливается без них. SDK platform, Build Tools, NDK, CMake и полный
-набор исходников ещё требуют подготовки. Android-компиляция и установка на телефон
-не подтверждены. DNS и AAAA не изменены; с `master` ветка не объединялась.
+намеренно останавливается без них. SDK platform, Build Tools, NDK и CMake теперь
+установлены; локальное полное дерево зависимостей ещё не развёрнуто. Отдельный
+ConnectionSocket скомпилирован Android ARM64-компилятором, в GitHub Actions прошли
+полные нативные compile/link (`tmessages.49`, `twidget`) и Gradle dependency metadata.
+Полная APK-сборка и
+установка на телефон не проверены. DNS и AAAA не изменены; с `master` ветка не
+объединялась. Новые workflow и команды — в
+[отчёте об инфраструктуре](ipv6-lab-build-infrastructure.md).
 
 ## Что делает lab-профиль
 
@@ -58,15 +64,15 @@ Gradle app/library, `BuildVars`, lab resources/manifest и изоляция runt
 | JDK path | `/workspace/android-lab/tools/jdk-17` |
 | Gradle | 8.13 загружен и проверен; `/workspace/android-lab/tools/gradle-8.13/bin/gradle` |
 | Android command-line tools | 22.0 установлены в `/workspace/android-lab/sdk/cmdline-tools/22.0` |
-| Android Gradle Plugin | Проект задаёт 8.13.2; полная AGP-конфигурация ещё не проверена |
-| SDK platform | Требуется `platforms;android-36`, не установлен |
-| Build Tools | Требуется `build-tools;36.0.0`, не установлен |
-| NDK | Требуется `ndk;27.2.12479018`, не установлен |
-| Android CMake | Требуется `cmake;3.22.1`, не установлен |
+| Android Gradle Plugin | 8.13.2; обычная конфигурация/dependency metadata прошла в CI, lab APK ещё не проверен |
+| SDK platform | `platforms;android-36` установлен |
+| Build Tools | `build-tools;36.0.0` установлен |
+| NDK | `ndk;27.2.12479018` установлен |
+| Android CMake | `cmake;3.22.1` установлен |
 | Минимальный Android | API 23, Android 6.0 |
 | Нативный C++ | C++17 |
-| Platform Tools / adb | Установить для проверки и установки на устройство |
-| Исходники и submodules | Checkout остаётся неполным; pinned submodules не инициализированы |
+| Platform Tools / adb | Установлен; подключение телефона не проверялось |
+| Исходники и submodules | Локально частично; в CI все обязательные pinned modules и 16 arm64 archives проверены |
 | Пользовательские API | Ожидаются, значения в репозиторий не записываются |
 | Локальная подпись | Подготовлен собственный ключ вне checkout, см. ниже |
 
@@ -74,17 +80,19 @@ Gradle app/library, `BuildVars`, lab resources/manifest и изоляция runt
 Firebase Crashlytics plugin 3.0.8 и Huawei AGConnect plugin 1.9.1.301. Несмотря на
 отключение применения Google services в lab-модулях, root/buildSrc dependencies
 должны разрешиться при конфигурации Gradle. Доступность Maven-зависимостей и
-совместимость всех Gradle/AGP DSL проверяются фактическим запуском после подготовки
-окружения, а не наличием файла Wrapper.
+обычная Gradle/AGP-конфигурация проверены фактическим dependency task в CI, а не
+наличием Wrapper. Lab-конфигурация с настоящими API и полная Java/APK-сборка ещё
+не выполнялись.
 
 Официальный архив установленного Temurin JDK проверен по SHA-256:
 `8b9b611d917e3dfd8419d3566b5949226f69b052fed7e109c1368add1dfe8711`.
 Первоначальный Java 21 runtime не имел стандартного JDK layout; команда сборки
 должна явно использовать подготовленный полный JDK 17.
 
-На момент сохранённого inventory свободно около 6.3 GiB. Не инициализирован
-21 top-level submodule, а 16 tracked arm64 native archives ещё отсутствуют в
-sparse checkout. Наличие SDK/NDK не заменяет эти исходники и prebuilt. Необходимо
+Старый inventory отражает состояние до установки SDK. Теперь локально свободно
+около 3,7 ГиБ, все 16 arm64 archives догружены, BoringSSL на pinned SHA.
+Остальные необходимые submodules ещё не получены в Codex. Наличие SDK/NDK
+не заменяет эти исходники и prebuilt. Необходимо
 учесть распакованный NDK, полное дерево, Gradle/Maven cache и промежуточные native
 артефакты; больший build environment или собственный CI может быть практичнее.
 Сверять текущие ограничения RAM/CPU через cgroup, а не только host `free`/`nproc`.
@@ -167,8 +175,8 @@ export PATH="$JAVA_HOME/bin:$PATH"
 "$ANDROID_HOME/cmdline-tools/22.0/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
 ```
 
-Эти пакеты ещё не установлены в текущей среде; наличие команд в инструкции не
-является результатом их выполнения. Команды могут требовать сетевого разрешения
+Эти пакеты уже установлены и проверены в текущей среде и hosted CI; команды нужны
+для повторения в новой среде. Команды могут требовать сетевого разрешения
 облачного окружения. Размеры скачиваемых архивов сохранены в SDK metadata;
 распакованные файлы и build outputs требуют дополнительного места.
 
@@ -209,9 +217,12 @@ umask. До проверки содержимого не публиковать 
 
 ## Проверки, уже выполненные
 
-Реальные Android-компиляция, manifest merge, упаковка, установка и MTProto login
-**не выполнялись**. Wrapper/Gradle и JDK запущены; отсутствующие API и Android
-packages выявлены до полноценной сборки. Результат preflight хранится в
+Полная Android/AGP-сборка, manifest merge, упаковка, установка и MTProto login
+**не выполнялись**. Отдельная нативная Android-компиляция ConnectionSocket уже
+прошла; в hosted CI также успешно собраны полные нативные цели и разрешены Gradle
+dependency metadata. Это не проверка Java/lab APK. См.
+[инфраструктурный отчёт](ipv6-lab-build-infrastructure.md).
+Исторический результат preflight хранится в
 [apk-preflight.log](ipv6-lab-results/apk-preflight.log).
 
 В isolated Gradle fixture без AGP выполнено **5/5 проверок**: обычный режим без

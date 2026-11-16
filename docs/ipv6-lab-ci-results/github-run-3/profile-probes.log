@@ -1,0 +1,115 @@
+Offline IPv6 Lab profile probes
+openjdk version "17.0.21" 2026-10-20
+Gradle: 8.13 (required toolchain)
+All inherited TELEGRAM_* and LAB_* environment variables were removed.
+No valid API credentials, passwords, or signing files were supplied.
+Android SDK, AGP, APK compilation and device behavior are not tested.
+
+PASS disabled: expected exit 0, actual exit 0
+Expected diagnostic: IPV6_LAB_PROFILE_DISABLED
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+> Task :probe
+IPV6_LAB_PROFILE_DISABLED
+
+[Incubating] Problems report is available at: file://<probe>/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 4s
+1 actionable task: 1 executed
+
+PASS invalid-flag: expected exit 1, actual exit 1
+Expected diagnostic: IPV6_LAB must be true or false.
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script '<repo>/tools/ipv6-lab/profile.gradle' line: 26
+
+* What went wrong:
+A problem occurred evaluating script.
+> IPV6_LAB must be true or false.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3s
+
+PASS missing-env: expected exit 1, actual exit 1
+Expected diagnostic: IPv6 Lab requires environment variables: TELEGRAM_API_ID, TELEGRAM_API_HASH, LAB_KEYSTORE, LAB_STORE_PASSWORD, LAB_KEY_PASSWORD, LAB_KEY_ALIAS.
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script '<repo>/tools/ipv6-lab/profile.gradle' line: 41
+
+* What went wrong:
+A problem occurred evaluating script.
+> IPv6 Lab requires environment variables: TELEGRAM_API_ID, TELEGRAM_API_HASH, LAB_KEYSTORE, LAB_STORE_PASSWORD, LAB_KEY_PASSWORD, LAB_KEY_ALIAS.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2s
+
+PASS invalid-api-id: expected exit 1, actual exit 1
+Expected diagnostic: TELEGRAM_API_ID must be a positive 32-bit integer
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script '<repo>/tools/ipv6-lab/profile.gradle' line: 46
+
+* What went wrong:
+A problem occurred evaluating script.
+> TELEGRAM_API_ID must be a positive 32-bit integer from your own Telegram application.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3s
+
+PASS invalid-api-hash: expected exit 1, actual exit 1
+Expected diagnostic: TELEGRAM_API_HASH must be the 32 hexadecimal characters
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script '<repo>/tools/ipv6-lab/profile.gradle' line: 50
+
+* What went wrong:
+A problem occurred evaluating script.
+> TELEGRAM_API_HASH must be the 32 hexadecimal characters of your own Telegram application.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2s
+
+5/5 probes passed

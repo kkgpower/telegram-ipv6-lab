@@ -1,0 +1,51 @@
+{
+  "checked_at_utc": "2026-11-16T08:48:24.478734+00:00",
+  "commit": "3d53a72d9cb9973b66650e23a19c72edb808df3d",
+  "branch": "ci/ipv6-lab-apk-infrastructure",
+  "working_tree_has_tracked_changes": true,
+  "ipv6_source_matches_7f67b8a": true,
+  "java_version": "openjdk version \"17.0.21\" 2026-10-20",
+  "java_compiler_module": true,
+  "standard_javac_binary": true,
+  "standard_jlink_binary": true,
+  "gradle_executable": "/workspace/android-lab/tools/gradle-8.13/bin/gradle",
+  "sdk_root": "/workspace/android-lab/sdk",
+  "sdk_packages_present": {
+    "platforms;android-36": true,
+    "build-tools;36.0.0": true,
+    "ndk;27.2.12479018": true,
+    "cmake;3.22.1": true
+  },
+  "uninitialized_submodules": [
+    "TMessagesProj/jni/td",
+    "TMessagesProj/jni/tgcalls",
+    "TMessagesProj/jni/third_party/absl",
+    "TMessagesProj/jni/third_party/boost-regex",
+    "TMessagesProj/jni/third_party/dav1d",
+    "TMessagesProj/jni/third_party/ffmpeg",
+    "TMessagesProj/jni/third_party/libprisma",
+    "TMessagesProj/jni/third_party/libvpx",
+    "TMessagesProj/jni/third_party/libyuv",
+    "TMessagesProj/jni/third_party/openh264",
+    "TMessagesProj/jni/third_party/wamr",
+    "TMessagesProj/jni/third_party/xiph/ogg",
+    "TMessagesProj/jni/third_party/xiph/opus",
+    "TMessagesProj/jni/third_party/xiph/opusfile",
+    "TMessagesProj/jni/tlottie",
+    "TMessagesProj/jni/twidget/twidget",
+    "TMessagesProj/jni/twidget/widget-sandbox",
+    "TMessagesProj/jni/wallet-engine",
+    "TMessagesProj/lib/jlatexmath",
+    "TMessagesProj_Modules/media"
+  ],
+  "intentionally_skipped_submodules": [],
+  "missing_arm64_native_archives": 0,
+  "own_api_parameters_present_and_format_valid": false,
+  "free_disk_bytes": 3932942336,
+  "blocking_prerequisites": [
+    "Pinned submodules are not initialized",
+    "Supply your own TELEGRAM_API_ID and TELEGRAM_API_HASH; shipped values are not accepted"
+  ],
+  "scope": "Environment inventory only; the opt-in lab profile exists, but Android assembly and device tests remain unverified",
+  "apk_produced": false
+}

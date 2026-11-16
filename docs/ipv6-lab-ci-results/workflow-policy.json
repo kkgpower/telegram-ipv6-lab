@@ -1,0 +1,9 @@
+{
+  "no_pull_request_triggers": true,
+  "token_permissions_contents_read_only": true,
+  "all_actions_pinned_to_sha": true,
+  "secrets_only_in_one_build_step": true,
+  "signed_job_requires_validation": true,
+  "explicit_artifact_allowlist": true,
+  "build_cache_not_configured": true
+}

@@ -1,0 +1,152 @@
+{
+  "status": "complete",
+  "api_parameters_used": false,
+  "apk_built": false,
+  "source_commit": "3d53a72d9cb9973b66650e23a19c72edb808df3d",
+  "source_has_tracked_changes": false,
+  "java": {
+    "home": "/usr/lib/jvm/temurin-17-jdk-amd64",
+    "version": "openjdk version \"17.0.21\" 2026-10-20"
+  },
+  "sdk_root": "/usr/local/lib/android/sdk",
+  "prepare_sources_requested": true,
+  "sdk_install_skipped": false,
+  "free_space_reserve_gib": 4.0,
+  "gradle": {
+    "executable": "/home/runner/work/_temp/telegram-ipv6-lab-infra-tools/gradle-8.13/bin/gradle",
+    "version": "8.13",
+    "download_sha256_verified_this_run": false,
+    "expected_archive_sha256": "20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78"
+  },
+  "sdkmanager": "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager",
+  "sdk_proxy_enabled": false,
+  "sdk_packages": {
+    "platform-tools": {
+      "present": true,
+      "revision": "37.0.1"
+    },
+    "platforms;android-36": {
+      "present": true,
+      "revision": "2"
+    },
+    "build-tools;36.0.0": {
+      "present": true,
+      "revision": "36.0.0"
+    },
+    "ndk;27.2.12479018": {
+      "present": true,
+      "revision": "27.2.12479018"
+    },
+    "cmake;3.22.1": {
+      "present": true,
+      "revision": "3.22.1"
+    }
+  },
+  "submodules": {
+    "count": 23,
+    "all_at_pinned_commits": false,
+    "required_at_pinned_commits": true,
+    "intentionally_skipped": [
+      "TMessagesProj/jni/twidget/widget-sandbox/packages/ios/Sources/CQuickJS/quickjs/test262"
+    ],
+    "blocking": []
+  },
+  "arm64_native_archives": [
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavcodec.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 4172660
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavformat.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1195592
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavutil.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1147604
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libcrypto.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 4106478
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libdav1d.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1281554
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libiwasm.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1179024
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libopenh264.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1696120
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libopus.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 698002
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libssl.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1495648
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libswresample.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 151722
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libswscale.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1280516
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtde2e.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2161738
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtdutils.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2223056
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtlottie.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2903742
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libvpx.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2247974
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libwallet_engine.a",
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 30309934
+    }
+  ]
+}

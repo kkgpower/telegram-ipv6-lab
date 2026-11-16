@@ -4,8 +4,53 @@
 ветка инфраструктуры — `ci/ipv6-lab-apk-infrastructure`. Эта работа не требует
 слияния с `master` или изменения исходного IPv6-исправления, DNS и обычной
 конфигурации Telegram. Собственные Telegram API ID/API hash пока отсутствуют.
-**APK не выпущен.** Подготовленный workflow и состоявшийся запуск CI — разные
-результаты; сведения о фактических запусках следует проверять по журналам Actions.
+**APK не выпущен.** No-secrets CI успешно собрал полные нативные цели Telegram
+для Android ARM64 и разрешил Gradle dependency metadata. Java-компиляция приложения,
+упаковка и подписывание APK остаются непроверенными до получения собственных API.
+
+Workflow опубликован в этой отдельной ветке и уже запущен без Secrets. Первый
+[прогон](https://github.com/kkgpower/telegram-ipv6-lab/actions/runs/43832210881)
+подтвердил работу runner, установку точных SDK packages и быстрые тесты; слишком
+строгая проверка optional submodule остановила дальнейшие проверки. Исправление
+проверки готовности прошло во
+[втором прогоне](https://github.com/kkgpower/telegram-ipv6-lab/actions/runs/43833803895).
+Затем [третий прогон](https://github.com/kkgpower/telegram-ipv6-lab/actions/runs/43835203652)
+успешно собрал также `tmessages.49` и `twidget`. Ни одного build-tag и ни одной
+подписанной сборки при этой проверке не создавалось.
+
+## Фактические результаты
+
+Проверенный код инфраструктуры — `b1b2ec3ba19cbaf04428bc501882a18dfe055d20`.
+Последующий коммит отчёта меняет только документацию и сохранённые результаты.
+Успешный третий validation job занял около 21 минуты; подписанный job пропущен.
+
+| Проверка в третьем прогоне | Результат |
+| --- | --- |
+| Unit guards CI и submodule policy | 22/22 PASS |
+| Реальный TCP/epoll host harness | 12/12 PASS |
+| Offline Gradle profile probes | 5/5 PASS |
+| SDK 36, Build Tools 36.0.0, NDK 27.2, CMake 3.22.1 | Нужные версии установлены |
+| Обязательные recursive submodules | 22 на pinned SHA; optional test262 пропущен по upstream policy |
+| Arm64 native archives | Все 16 файлов присутствуют, заголовки ar проверены |
+| ConnectionSocket → Android AArch64 ELF | PASS, 0,57 с |
+| Полная CMake-конфигурация | PASS, 0,62 с |
+| `tgnet` | PASS, 16,86 с |
+| `tmessages.49` и `twidget`, compile/link | PASS, 1009,47 с (16 мин 49 с) |
+| Gradle debugCompileClasspath metadata | PASS, 100,60 с |
+| APK, подпись, установка, MTProto на телефоне | Не выполнялись |
+
+Для полной нативной команды `/usr/bin/time -v` сообщил child peak RSS
+2 455 860 КиБ (около 2,34 ГиБ). Это максимум дочернего процесса, а не суммарная
+память всей VM или одновременно работающих JVM/native процессов будущей сборки.
+Проверка metadata не покрывает все artifact transforms, Java/Dex и APK packaging.
+
+Сохранены [итог job и digest ZIP](ipv6-lab-ci-results/github-run-3/run-summary.json),
+[native/dependency проверки](ipv6-lab-ci-results/github-run-3/verification-report.json),
+[версии и исходники](ipv6-lab-ci-results/github-run-3/toolchain-report.json),
+[ресурсы](ipv6-lab-ci-results/github-run-3/resource-report.json), host/profile logs.
+Архив validation скачан и проверен по SHA-256, указанному GitHub; в Git сохранены
+только шесть разрешённых отчётов и публичная сводка. Срок Actions artifacts — 3 дня,
+поэтому копии отчётов в репозитории сохраняют результат после удаления artifact.
 
 ## Выбор среды
 
@@ -24,10 +69,20 @@ VM: `df -h`, фактический образ и расход после checko
 Проверка локального Codex также относится к этой машине, а не ко всем возможным
 конфигурациям продукта.
 
+В фактическом первом hosted-прогоне получен image `20261111.370.1`: 4 CPU,
+16 760 344 576 байт RAM (около 15,6 ГиБ), файловая система 154 894 188 544 байта
+(около 144,3 ГиБ). После SDK и submodules было свободно 86 592 647 168 байт
+(около 80,6 ГиБ). Это наблюдение конкретной VM, а не обещание аналогичного диска
+каждому запуску. Источник —
+[сохранённый resource-report.json](ipv6-lab-ci-results/github-run-1/resource-report.json).
+После установки SDK в Codex свободно около 4 ГиБ; после дополнительных заголовков
+и arm64 archives — около 3,7 ГиБ. Диск и RAM этой локальной среды намного теснее.
+
 Для public-репозитория стандартный Actions runner даёт больше CPU/RAM, чем
-текущий Codex, и является предпочтительным первым кандидатом для полной arm64
-сборки. Достаточность его ресурсов ещё должна быть подтверждена фактической
-сборкой. Текущее облачное окружение подходит для анализа, host-тестов и подготовки
+текущий Codex, и рекомендуется для полной arm64 сборки. Третий прогон подтвердил
+достаточность для полного native compile/link: 4 CPU, около 15,3 ГиБ RAM и
+84 ГиБ свободного места после подготовки, image `20261111.127.1`. Полный APK
+пока не проверен. Текущее облачное окружение подходит для анализа, host-тестов и подготовки
 инструментов; его небольшой общий диск ограничивает холодную Android-сборку.
 
 Larger runners доступны организациям/enterprise на GitHub Team или Enterprise
@@ -50,11 +105,25 @@ intermediates учитываются дополнительно. Размер а
 и 16 arm64 `.a`. Получение SDK не заменяет эти файлы. Полное дерево и состояние
 зависимостей должны проверяться до ввода подписывающих secrets.
 
+Аудит Git metadata подтвердил доступность всех 21 top-level pinned commits,
+вложенного QuickJS и его optional `test262`. Минимум superproject + 20 GitHub
+submodules + распакованный NDK — около 3,27 ГиБ, ещё без libyuv, Git storage,
+остальных SDK, Gradle caches и build intermediates.
+
+QuickJS в upstream задаёт `test262` как `update = none`: это JavaScript test suite,
+не входящий в Android APK. После recursive checkout видны 23 записи: 22 нужных
+модуля на закреплённых SHA и один намеренно пропущенный. Helper читает политику
+из **committed** `.gitmodules` владельца, а не из локального `.git/config`.
+Отсутствие обязательного модуля или другой SHA по-прежнему блокируют сборку.
+
 В CMake включены debug information и full LTO; native link может потребовать
 существенной памяти. Один Gradle worker и arm64-only уменьшают нагрузку, но не
-доказывают, что все этапы поместятся в 8 ГиБ. Время и пик RSS полной сборки пока
-не измерены. Не следует представлять предполагаемые размеры intermediates как
+доказывают, что все этапы поместятся в 8 ГиБ. Время и child peak RSS полной
+нативной команды измерены выше; пик всей APK-сборки пока не измерен.
+Не следует представлять предполагаемые размеры intermediates как
 проверенный факт или обещать завершение в лимит hosted job.
+Флаги full LTO заданы корневым CMake; `jni/voip/CMakeLists.txt` переопределяет
+C++ flags, поэтому нельзя распространять утверждение о full LTO на весь WebRTC.
 
 Собирать сразу четыре ABI в этой задаче не требуется. Подготовленный lab-профиль
 ограничен `arm64-v8a`; телефон должен поддерживать эту ABI и Android API 23+.
@@ -64,7 +133,10 @@ intermediates учитываются дополнительно. Размер а
 Проекту нужны полный JDK 17, Gradle 8.13, SDK 36, Build Tools 36.0.0,
 NDK `27.2.12479018` и Android CMake `3.22.1`.
 В Codex уже подготовлены полный Temurin JDK 17, Gradle 8.13 и Android
-command-line tools. Остальные компоненты и checkout проверяются отдельно.
+command-line tools, SDK 36, Build Tools 36.0.0, NDK 27.2.12479018,
+CMake 3.22.1 и platform-tools. Все 16 arm64 archives догружены; BoringSSL
+выгружен на закреплённом SHA для непосредственной Android-компиляции.
+Полное локальное дерево submodules по-прежнему не разворачивалось.
 
 Официальный snapshot образа Ubuntu 24.04 в `actions/runner-images`, commit
 `67421cc1650a2ab8eac05d4674a787d25dc51627`, image `20261111.370.1`, содержит:
@@ -113,6 +185,52 @@ python3 tools/ipv6-lab/check-environment.py \
   --output /tmp/ipv6-lab-environment.json
 ```
 
+Воспроизведение подготовки и проверок без API на runner с уже установленными
+JDK 17 и Android command-line tools:
+
+```bash
+export JAVA_HOME=/workspace/android-lab/tools/jdk-17
+export ANDROID_HOME=/workspace/android-lab/sdk
+export GRADLE_BIN=/workspace/android-lab/tools/gradle-8.13/bin/gradle
+export INFRA_REPORT_DIR=/tmp/ipv6-lab-infrastructure
+export INFRA_ACCEPT_ANDROID_LICENSES=1
+bash tools/ipv6-lab/prepare-infrastructure.sh
+source "$INFRA_REPORT_DIR/infra-env.sh"
+export INFRA_VERIFY_FULL_NATIVE=1
+bash tools/ipv6-lab/verify-infrastructure.sh
+```
+
+`prepare` устанавливает только закреплённые версии, проверяет место и сохраняет
+SDK revisions, required/optional submodules, все 16 `.a` и реальные ресурсы VM.
+Полный checkout получается через `git sparse-checkout disable`, recursive
+submodules — shallow и на pinned commits, без `--remote`. `verify` компилирует
+реальный ConnectionSocket в Android ARM64 ELF, конфигурирует весь CMake-проект,
+собирает `tgnet` и проверяет Gradle dependency metadata без `assemble` и без APK.
+`INFRA_VERIFY_FULL_NATIVE=1` дополнительно собирает и линкует `tmessages.49` и
+`twidget` с одним native worker; именно этот режим прошёл в третьем Actions run.
+Успех dependency report не доказывает будущие artifact transforms/Java-компиляцию.
+
+Для ограниченного локального диска можно сначала использовать
+`INFRA_PREPARE_SOURCES=0` при подготовке и `INFRA_VERIFY_NATIVE_ONLY=1` при проверке.
+Эти режимы явно помечаются `partial`/`android-translation-unit-only` и не означают
+готовности всей сборки. Минимальный запас перед крупными стадиями — 4 ГиБ;
+`INFRA_MIN_FREE_GIB` позволяет явно настроить его для своей машины.
+
+В данном Codex у Java обнаружен `PKIX path building failed` для сертификата
+управляемого proxy, хотя Python/curl получали официальный SDK catalog. Это
+исправлено opt-in параметром:
+
+```bash
+export INFRA_JAVA_TRUSTSTORE=/etc/ssl/certs/java/cacerts
+```
+
+Используется существующее системное доверенное хранилище; проверка TLS не
+отключается, сертификаты не выдумываются и глобальная Java-конфигурация не меняется.
+Прокси берётся из унаследованного окружения. На обычном hosted runner этот
+специфичный для Codex параметр не нужен. Если Gradle в Codex тоже идёт через proxy,
+для него отдельно нужны штатные JVM proxy/trust properties; successful HTTP probe
+не заменяет настоящий Gradle dependency check.
+
 После подготовки SDK packages и получения собственных параметров используется
 существующий `tools/ipv6-lab/build-apk.sh`; полный порядок приведён в
 [инструкции lab APK](ipv6-lab-apk.md). Скрипт не должен подменять API, signer,
@@ -125,6 +243,22 @@ python3 tools/ipv6-lab/check-environment.py \
 цепочку и зависимости до появления API. У проверки нет доступа к подписывающим
 secrets и нет задачи выпуска APK. Результаты локальных проверок нельзя выдавать
 за уже состоявшийся запуск hosted runner.
+
+Изменения только `docs/` не перезапускают тяжёлую проверку. Фильтры `paths` не
+применяются к push тегов: явный `ipv6-lab-build-*` по-прежнему запускает workflow.
+[Поведение path filters](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onpushpull_requestpull_request_targetpathspaths-ignore).
+
+Проверки выполняются в порядке: verified Gradle 8.13 → unit guards → 12 host
+socket tests → 5 offline profile probes → SDK/submodules → Android native/CMake/
+Gradle metadata. Поэтому ошибка тяжёлой инфраструктуры не скрывает уже доступные
+быстрые проверки. В подписывающий job передаются Secrets только после успешной
+проверки, в единственный build-step. Raw stdout/stderr подписанной Gradle-сборки
+не попадает в Actions log; диагностический tail разрешён только no-secrets стадиям.
+
+Непосредственная проверка исправления в Codex уже прошла: NDK r27c скомпилировал
+`ConnectionSocket.cpp` за 1,17 с, заголовок результата проверен как AArch64 ELF
+relocatable. Это не измерение длительности сборки Telegram. Результат —
+[verification-report.json](ipv6-lab-ci-results/codex-current/verification-report.json).
 
 Для будущей подписанной сборки предусмотрен отдельный push тега
 `ipv6-lab-build-*`, указывающего на проверенный инфраструктурный коммит. Создание
@@ -209,7 +343,8 @@ API hash клиента неизбежно входит в APK. Secret masking �
 
 ## Время, хранение и доступность
 
-Hosted job ограничен 6 часами; полный workflow может жить до 35 дней, включая
+Hosted job ограничен 6 часами; наш validation ограничен 180 минутами,
+подписанная сборка — 300 минутами. Полный workflow может жить до 35 дней, включая
 ожидание, но это не увеличивает время сборки одного job. Разделение проверок и
 подписанной сборки не должно переносить секретные caches между ними.
 [Actions limits](https://docs.github.com/en/actions/reference/limits).
@@ -231,15 +366,15 @@ public repo. В текущих таблицах compute allowance выражае
 
 ## Рекомендация и оставшиеся действия
 
-1. Выполнить no-secrets validation в стандартном public `ubuntu-24.04`, сохранить
-   версии, состояние checkout, расход диска/памяти и настоящий итог job.
-2. Исправлять только подтверждённые препятствия инфраструктуры. Не менять версии
-   native-библиотек, IPv6 fix или DNS для маскировки проблем checkout/toolchain.
-3. После получения собственных API настроить environment Secrets, сохранить тот
+1. Использовать стандартный public `ubuntu-24.04`: no-secrets validation с полным
+   native compile/link уже прошёл, результаты сохранены. В Codex холодная полная
+   сборка ограничена диском, и разворачивать оставшееся дерево здесь не рекомендуется.
+2. После получения собственных API настроить environment Secrets, сохранить тот
    же локальный signer и запустить проверенный коммит через отдельный build tag.
-4. Проверить package `org.kkgpower.telegram.ipv6lab.beta`, неофициальные имя/значок,
+3. Проверить package `org.kkgpower.telegram.ipv6lab.beta`, неофициальные имя/значок,
    arm64 ABI, подпись и SHA APK. Проверки Android/MTProto на телефоне остаются
    отдельным этапом; официальный Telegram удалять не требуется.
-5. Если полный native link исчерпает диск/RAM или 6 часов, перенести подписанный
+4. Если последующая APK-сборка исчерпает диск/RAM или timeout, перенести подписанный
    job на реально доступный более вместительный runner. Это решение принимается
-   по измерениям неудачного запуска, а не по предположению об успешной сборке.
+   по измерениям неудачного запуска. Не менять IPv6 fix, DNS, версии библиотек
+   или обычный профиль Telegram для маскировки инфраструктурной ошибки.

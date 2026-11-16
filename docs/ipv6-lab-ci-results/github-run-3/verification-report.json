@@ -1,0 +1,43 @@
+{
+  "checked_at_utc": "2026-11-16T09:16:37.318395+00:00",
+  "commit": "b1b2ec3ba19cbaf04428bc501882a18dfe055d20",
+  "mode": "full-infrastructure-without-apk",
+  "application_native_targets_requested": true,
+  "checks": {
+    "android-connection-socket": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.57,
+      "aarch64_elf_relocatable": true
+    },
+    "cmake-configure": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.62
+    },
+    "android-tgnet": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 16.86
+    },
+    "android-application-native": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 1009.47,
+      "child_peak_rss_kib": 2455860,
+      "targets": [
+        "tmessages.49",
+        "twidget"
+      ]
+    },
+    "gradle-dependency-metadata": {
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 100.6
+    }
+  },
+  "passed": true,
+  "api_parameters_used": false,
+  "apk_built": false,
+  "limitations": "No Java application compilation, APK packaging, MTProto authentication or Android device test. Gradle dependency report verifies metadata, not all future artifact transforms. Native target checks are listed individually; RSS is a child-process peak, not total system memory."
+}

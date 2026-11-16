@@ -1,0 +1,13 @@
+PASS MTProto IPv6 override
+PASS MTProto IPv4 override
+PASS MTProto IPv6 global
+PASS MTProto IPv4 global
+PASS direct IPv6
+PASS direct IPv4
+PASS SOCKS5 IPv6 proxy IPv4 DC
+PASS SOCKS5 IPv4 proxy IPv6 DC
+PASS SOCKS5 IPv6 proxy IPv6 DC
+PASS SOCKS5 IPv4 proxy IPv4 DC
+PASS async refusal IPv6
+PASS async refusal IPv4
+12/12 passed

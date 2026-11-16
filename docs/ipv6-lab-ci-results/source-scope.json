@@ -1,0 +1,28 @@
+{
+  "base_commit": "e3bde6d2a7a2835ac2a36754c662dbc89715b160",
+  "tested_infrastructure_commit": "b1b2ec3ba19cbaf04428bc501882a18dfe055d20",
+  "branch": "ci/ipv6-lab-apk-infrastructure",
+  "connection_socket_blob": "6c5271cf377e8980f54aecebc054ee9c137154bc",
+  "connection_socket_matches_original_fix": true,
+  "production_sources_and_build_configuration_unchanged_from_base": true,
+  "checked_paths": [
+    "TMessagesProj",
+    "TMessagesProj_App",
+    "TMessagesProj_Modules",
+    "buildSrc",
+    "gradle",
+    "gradlew",
+    "build.gradle",
+    "settings.gradle",
+    "gradle.properties",
+    ".gitmodules"
+  ],
+  "remote_refs_observed_2026_11_16": {
+    "master": "21f7d109da6ab3506c9e9577f98c6a38771ab335",
+    "fix/mtproto-proxy-ipv6-literal": "e3bde6d2a7a2835ac2a36754c662dbc89715b160",
+    "ci/ipv6-lab-apk-infrastructure": "b1b2ec3ba19cbaf04428bc501882a18dfe055d20"
+  },
+  "api_parameters_used_for_apk": false,
+  "apk_built": false,
+  "build_tag_created": false
+}

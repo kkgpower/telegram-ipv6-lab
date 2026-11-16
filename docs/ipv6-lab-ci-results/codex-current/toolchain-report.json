@@ -2,7 +2,7 @@
   "status": "partial",
   "api_parameters_used": false,
   "apk_built": false,
-  "source_commit": "e3bde6d2a7a2835ac2a36754c662dbc89715b160",
+  "source_commit": "3d53a72d9cb9973b66650e23a19c72edb808df3d",
   "source_has_tracked_changes": true,
   "java": {
     "home": "/workspace/android-lab/tools/jdk-17",
@@ -10,17 +10,14 @@
   },
   "sdk_root": "/workspace/android-lab/sdk",
   "prepare_sources_requested": false,
-  "sdk_install_skipped": false,
-  "free_space_reserve_gib": 4.0,
+  "sdk_install_skipped": true,
+  "free_space_reserve_gib": 2.0,
   "gradle": {
     "executable": "/workspace/android-lab/tools/gradle-8.13/bin/gradle",
     "version": "8.13",
     "download_sha256_verified_this_run": false,
     "expected_archive_sha256": "20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78"
   },
-  "sdkmanager": "/workspace/android-lab/sdk/cmdline-tools/22.0/bin/sdkmanager",
-  "sdk_java_truststore": "/etc/ssl/certs/java/cacerts",
-  "sdk_proxy_enabled": true,
   "sdk_packages": {
     "platform-tools": {
       "present": true,
@@ -45,104 +42,128 @@
   },
   "submodules": {
     "count": 21,
-    "all_at_pinned_commits": false
+    "all_at_pinned_commits": false,
+    "required_at_pinned_commits": false,
+    "intentionally_skipped": [],
+    "blocking": [
+      "TMessagesProj/jni/td",
+      "TMessagesProj/jni/tgcalls",
+      "TMessagesProj/jni/third_party/absl",
+      "TMessagesProj/jni/third_party/boost-regex",
+      "TMessagesProj/jni/third_party/dav1d",
+      "TMessagesProj/jni/third_party/ffmpeg",
+      "TMessagesProj/jni/third_party/libprisma",
+      "TMessagesProj/jni/third_party/libvpx",
+      "TMessagesProj/jni/third_party/libyuv",
+      "TMessagesProj/jni/third_party/openh264",
+      "TMessagesProj/jni/third_party/wamr",
+      "TMessagesProj/jni/third_party/xiph/ogg",
+      "TMessagesProj/jni/third_party/xiph/opus",
+      "TMessagesProj/jni/third_party/xiph/opusfile",
+      "TMessagesProj/jni/tlottie",
+      "TMessagesProj/jni/twidget/twidget",
+      "TMessagesProj/jni/twidget/widget-sandbox",
+      "TMessagesProj/jni/wallet-engine",
+      "TMessagesProj/lib/jlatexmath",
+      "TMessagesProj_Modules/media"
+    ]
   },
   "arm64_native_archives": [
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavcodec.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 4172660
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavformat.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1195592
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavutil.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1147604
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libcrypto.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 4106478
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libdav1d.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1281554
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libiwasm.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1179024
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libopenh264.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1696120
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libopus.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 698002
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libssl.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1495648
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libswresample.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 151722
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libswscale.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 1280516
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtde2e.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2161738
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtdutils.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2223056
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libtlottie.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2903742
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libvpx.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 2247974
     },
     {
       "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libwallet_engine.a",
-      "present": false,
-      "regular_ar_header": false,
-      "bytes": null
+      "present": true,
+      "regular_ar_header": true,
+      "bytes": 30309934
     }
   ]
 }
