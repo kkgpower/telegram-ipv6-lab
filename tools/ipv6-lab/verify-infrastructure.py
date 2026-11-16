@@ -5,6 +5,7 @@ INFRA_VERIFY_NATIVE_ONLY=1 limits the check to the patched Android translation
 unit, useful in a small local environment. The default additionally configures
 the complete native project, builds tgnet, and resolves the Gradle dependency
 metadata graph. No Telegram API parameters or signing keys are used.
+INFRA_VERIFY_FULL_NATIVE=1 also builds the application's two native targets.
 """
 
 import datetime
@@ -34,6 +35,7 @@ def main():
     ninja = sdk / "cmake/3.22.1/bin/ninja"
     gradle = env.get("GRADLE_BIN") or str(repo / "gradlew")
     native_only = env.get("INFRA_VERIFY_NATIVE_ONLY") == "1"
+    full_native = env.get("INFRA_VERIFY_FULL_NATIVE") == "1"
     results = {}
 
     def run(name, args, timeout):
@@ -110,7 +112,21 @@ def main():
                 "-DANDROID_STL=c++_static", "-DCMAKE_BUILD_TYPE=Debug",
             ], 600)
             if configured:
-                run("android-tgnet", [cmake, "--build", build_dir, "--target", "tgnet", "--parallel", "1"], 1800)
+                tgnet_ready = run("android-tgnet", [cmake, "--build", build_dir, "--target", "tgnet", "--parallel", "1"], 1800)
+                if full_native and tgnet_ready:
+                    native_command = [cmake, "--build", build_dir, "--target", "tmessages.49", "twidget", "--parallel", "1"]
+                    timer = Path("/usr/bin/time")
+                    usage = private / "full-native-resources.txt"
+                    if timer.is_file():
+                        native_command = [timer, "-v", "-o", usage, *native_command]
+                    run("android-application-native", native_command, 4200)
+                    if usage.is_file():
+                        match = re.search(r"Maximum resident set size \(kbytes\):\s*(\d+)", usage.read_text())
+                        if match:
+                            results["android-application-native"]["child_peak_rss_kib"] = int(match.group(1))
+                    results["android-application-native"]["targets"] = ["tmessages.49", "twidget"]
+                elif full_native:
+                    results["android-application-native"] = {"passed": False, "diagnostic": "Skipped because tgnet compilation failed"}
             else:
                 results["android-tgnet"] = {"passed": False, "diagnostic": "Skipped because full native configuration failed"}
             resolved = run("gradle-dependency-metadata", [
@@ -130,9 +146,10 @@ def main():
         "checked_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip(),
         "mode": "android-translation-unit-only" if native_only else "full-infrastructure-without-apk",
+        "application_native_targets_requested": full_native,
         "checks": results, "passed": verified,
         "api_parameters_used": False, "apk_built": False,
-        "limitations": "No complete application link, APK packaging, MTProto authentication or Android device test. Gradle dependency report verifies metadata, not all future artifact transforms.",
+        "limitations": "No Java application compilation, APK packaging, MTProto authentication or Android device test. Gradle dependency report verifies metadata, not all future artifact transforms. Native target checks are listed individually; RSS is a child-process peak, not total system memory.",
     }
     (report / "verification-report.json").write_text(json.dumps(result, indent=2) + "\n")
     print("Infrastructure report: " + str(report / "verification-report.json"))

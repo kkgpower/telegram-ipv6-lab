@@ -47,10 +47,11 @@ jobs:
        (github.event_name == 'workflow_dispatch' &&
         github.ref == 'refs/heads/ci/ipv6-lab-apk-infrastructure'))
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 180
     env:
       INFRA_ACCEPT_ANDROID_LICENSES: '1'
       INFRA_PREPARE_SOURCES: '1'
+      INFRA_VERIFY_FULL_NATIVE: '1'
     steps:
       - name: Configure isolated temporary paths
         run: |
