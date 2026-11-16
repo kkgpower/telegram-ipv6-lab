@@ -14,6 +14,7 @@ probe reads the public bundled API ID from BuildVars and fails before any
 credential or keystore can be accepted. No signing files are created.
 """
 
+import argparse
 import os
 from pathlib import Path
 import re
@@ -36,6 +37,10 @@ IGNORED_ENV = {
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=RESULT,
+                        help="Write the probe log outside the checkout in CI")
+    args = parser.parse_args()
     gradle = shutil.which(os.environ.get("GRADLE_BIN", "gradle"))
     if not gradle:
         raise RuntimeError("Set GRADLE_BIN to an installed Gradle 8.13 executable.")
@@ -52,6 +57,12 @@ def main():
     ).stdout.splitlines()[0]
     if not re.search(r'version "17[.\"]', version):
         raise RuntimeError("Run these reproducibility probes with JDK 17.")
+    gradle_version = subprocess.run(
+        [gradle, "--version"], env=env, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT, text=True, timeout=90, check=True,
+    ).stdout
+    if not re.search(r"^Gradle 8\.13$", gradle_version, re.MULTILINE):
+        raise RuntimeError("Run these reproducibility probes with Gradle 8.13.")
     source = REPO / "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
     bundled_id = re.search(
         r"public static int APP_ID\s*=\s*[^;\n]*?(\d+)\s*;", source.read_text()
@@ -116,9 +127,9 @@ def main():
             ])
             print(f"{status} {name}: expected exit {expected_exit}, actual exit {actual_exit}", flush=True)
     log.append(f"{passed}/5 probes passed")
-    RESULT.parent.mkdir(parents=True, exist_ok=True)
-    RESULT.write_text("\n".join(log) + "\n")
-    print(f"{passed}/5 probes passed; log: {RESULT.relative_to(REPO)}")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text("\n".join(log) + "\n")
+    print(f"{passed}/5 probes passed; log: {args.output}")
     return 0 if passed == 5 else 1
 
 

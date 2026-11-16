@@ -1,0 +1,175 @@
+name: IPv6 Lab infrastructure and APK
+
+on:
+  push:
+    branches:
+      - ci/ipv6-lab-apk-infrastructure
+    tags:
+      - ipv6-lab-build-*
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate infrastructure or build an unofficial APK with configured secrets
+        required: true
+        default: validate
+        type: choice
+        options:
+          - validate
+          - build-apk
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ipv6-lab-${{ github.ref }}-${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'push' }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: >-
+      github.repository == 'kkgpower/telegram-ipv6-lab' &&
+      ((github.event_name == 'push' &&
+        (github.ref == 'refs/heads/ci/ipv6-lab-apk-infrastructure' ||
+         startsWith(github.ref, 'refs/tags/ipv6-lab-build-'))) ||
+       (github.event_name == 'workflow_dispatch' &&
+        github.ref == 'refs/heads/ci/ipv6-lab-apk-infrastructure'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      INFRA_ACCEPT_ANDROID_LICENSES: '1'
+      INFRA_PREPARE_SOURCES: '1'
+    steps:
+      - name: Configure isolated temporary paths
+        run: |
+          printf 'GRADLE_USER_HOME=%s\n' "$RUNNER_TEMP/ipv6-lab-gradle" >> "$GITHUB_ENV"
+          printf 'INFRA_REPORT_DIR=%s\n' "$RUNNER_TEMP/ipv6-lab-validation" >> "$GITHUB_ENV"
+          printf 'NATIVE_TEST_BUILD_DIR=%s\n' "$RUNNER_TEMP/ipv6-lab-native-host" >> "$GITHUB_ENV"
+
+      - name: Check out the triggering commit without persistent credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          submodules: false
+          persist-credentials: false
+
+      - name: Set up the tested JDK without dependency caching
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: 17.0.21+9
+
+      - name: Install Linux host-test prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y g++ libssl-dev python3
+
+      - name: Prepare verified Gradle before heavyweight infrastructure checks
+        env:
+          INFRA_SKIP_SDK: '1'
+          INFRA_PREPARE_SOURCES: '0'
+        run: bash tools/ipv6-lab/prepare-infrastructure.sh
+
+      - name: Check CI context, credential rejection and cleanup guards without secrets
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -m unittest discover -s tools/ipv6-lab/tests
+
+      - name: Run the real host socket tests
+        run: |
+          bash tools/ipv6-lab/native-test/build.sh
+          timeout 30s "$NATIVE_TEST_BUILD_DIR/fixed-test" > "$INFRA_REPORT_DIR/native-host.log" 2>&1
+          cat "$INFRA_REPORT_DIR/native-host.log"
+
+      - name: Check the lab profile rejects missing and invalid credentials
+        run: python3 tools/ipv6-lab/test-profile.py --output "$INFRA_REPORT_DIR/profile-probes.log"
+
+      - name: Prepare pinned Android tools and source dependencies without API parameters
+        run: bash tools/ipv6-lab/prepare-infrastructure.sh
+
+      - name: Verify Android native configuration and dependency readiness without an APK
+        run: bash tools/ipv6-lab/verify-infrastructure.sh
+
+      - name: Upload only no-secret validation reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ipv6-lab-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/ipv6-lab-validation/resource-report.json
+            ${{ runner.temp }}/ipv6-lab-validation/toolchain-report.json
+            ${{ runner.temp }}/ipv6-lab-validation/verification-report.json
+            ${{ runner.temp }}/ipv6-lab-validation/submodules.txt
+            ${{ runner.temp }}/ipv6-lab-validation/native-host.log
+            ${{ runner.temp }}/ipv6-lab-validation/profile-probes.log
+          if-no-files-found: warn
+          retention-days: 3
+          include-hidden-files: false
+
+  build-apk:
+    needs: validate
+    if: >-
+      github.repository == 'kkgpower/telegram-ipv6-lab' &&
+      ((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/ipv6-lab-build-')) ||
+       (github.event_name == 'workflow_dispatch' &&
+        github.ref == 'refs/heads/ci/ipv6-lab-apk-infrastructure' && inputs.mode == 'build-apk'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    environment: ipv6-lab
+    env:
+      INFRA_ACCEPT_ANDROID_LICENSES: '1'
+      INFRA_PREPARE_SOURCES: '1'
+    steps:
+      - name: Configure isolated temporary paths
+        run: |
+          printf 'GRADLE_USER_HOME=%s\n' "$RUNNER_TEMP/ipv6-lab-gradle" >> "$GITHUB_ENV"
+          printf 'INFRA_REPORT_DIR=%s\n' "$RUNNER_TEMP/ipv6-lab-validation" >> "$GITHUB_ENV"
+
+      - name: Check out the triggering commit without persistent credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          submodules: false
+          persist-credentials: false
+
+      - name: Set up the tested JDK without dependency caching
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: 17.0.21+9
+
+      - name: Prepare tools before secrets are introduced
+        run: bash tools/ipv6-lab/prepare-infrastructure.sh
+
+      - name: Build and verify the unofficial APK with private temporary credentials
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          LAB_KEYSTORE_BASE64: ${{ secrets.LAB_KEYSTORE_BASE64 }}
+          LAB_STORE_PASSWORD: ${{ secrets.LAB_STORE_PASSWORD }}
+          LAB_KEY_PASSWORD: ${{ secrets.LAB_KEY_PASSWORD }}
+          LAB_KEY_ALIAS: ${{ secrets.LAB_KEY_ALIAS }}
+        run: python3 tools/ipv6-lab/ci-build-apk.py
+
+      # The APK necessarily contains the client API parameters. These explicit
+      # outputs contain no private signing key, raw Gradle log or BuildConfig.
+      - name: Upload the verified unofficial APK and public provenance only
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ipv6-lab-unofficial-arm64-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/ipv6-lab-public/telegram-ipv6-lab-unofficial-arm64.apk
+            ${{ runner.temp }}/ipv6-lab-public/apk.sha256
+            ${{ runner.temp }}/ipv6-lab-public/signing-certificate.der
+            ${{ runner.temp }}/ipv6-lab-public/source-commit.txt
+            ${{ runner.temp }}/ipv6-lab-public/submodules.txt
+            ${{ runner.temp }}/ipv6-lab-public/provenance.json
+          if-no-files-found: error
+          retention-days: 3
+          compression-level: 0
+          include-hidden-files: false
+
+      - name: Remove private files and generated build state even after failure
+        if: always()
+        run: python3 tools/ipv6-lab/ci-build-apk.py --cleanup

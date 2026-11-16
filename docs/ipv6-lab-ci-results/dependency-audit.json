@@ -1,0 +1,297 @@
+{
+  "source_commit": "e3bde6d2a7a2835ac2a36754c662dbc89715b160",
+  "native_archive_metadata_url": "https://api.github.com/repos/kkgpower/telegram-ipv6-lab/git/trees/69ebb5674ccd87fad3238e4ebd6dc1701e8e91c9?recursive=1",
+  "native_archive_count": 64,
+  "native_archive_bytes_by_abi": {
+    "arm64-v8a": 58251364,
+    "armeabi-v7a": 50507270,
+    "x86": 47510356,
+    "x86_64": 56708110
+  },
+  "native_archive_total_bytes": 212977100,
+  "arm64_archives": [
+    {
+      "path": "arm64-v8a/libavcodec.a",
+      "size": 4172660,
+      "sha": "c25ba81785b8cc8feec4c172470bd3c8cdfc23e8"
+    },
+    {
+      "path": "arm64-v8a/libavformat.a",
+      "size": 1195592,
+      "sha": "a326fcab18c494e0a6bdf80c5ddc80167955ce12"
+    },
+    {
+      "path": "arm64-v8a/libavutil.a",
+      "size": 1147604,
+      "sha": "2cb174d9ad2775eb0f4634bd66260333f03d3353"
+    },
+    {
+      "path": "arm64-v8a/libcrypto.a",
+      "size": 4106478,
+      "sha": "7adc997cbcb122f3cf9eb528a3a6671f41a55f9c"
+    },
+    {
+      "path": "arm64-v8a/libdav1d.a",
+      "size": 1281554,
+      "sha": "5287befa45f2ea81bad9ef5a6a31c009585b5077"
+    },
+    {
+      "path": "arm64-v8a/libiwasm.a",
+      "size": 1179024,
+      "sha": "3c030b130ca4c7506d7fc248f80f1491ffe12524"
+    },
+    {
+      "path": "arm64-v8a/libopenh264.a",
+      "size": 1696120,
+      "sha": "e2d9cd4fae2db2310f6b416395156f3123cd9b60"
+    },
+    {
+      "path": "arm64-v8a/libopus.a",
+      "size": 698002,
+      "sha": "26992938b2d4a844f07957a2b1f26d30cae8f044"
+    },
+    {
+      "path": "arm64-v8a/libssl.a",
+      "size": 1495648,
+      "sha": "85f273b58ff671a9971806b3fb53bb4ac9ca248e"
+    },
+    {
+      "path": "arm64-v8a/libswresample.a",
+      "size": 151722,
+      "sha": "8e8f4c9023aecd8c00da5ca95a1cfe336c14e4b9"
+    },
+    {
+      "path": "arm64-v8a/libswscale.a",
+      "size": 1280516,
+      "sha": "fb310b587a95b213922fd5fedffb75e8ae86830d"
+    },
+    {
+      "path": "arm64-v8a/libtde2e.a",
+      "size": 2161738,
+      "sha": "bac69993f43a741b55044f1a6c3e2b197cf82809"
+    },
+    {
+      "path": "arm64-v8a/libtdutils.a",
+      "size": 2223056,
+      "sha": "606ecde60fa06376145ea87ff03a53f60a2d4c84"
+    },
+    {
+      "path": "arm64-v8a/libtlottie.a",
+      "size": 2903742,
+      "sha": "f47751c05b25a53a6a1507473e641b6eec4303e7"
+    },
+    {
+      "path": "arm64-v8a/libvpx.a",
+      "size": 2247974,
+      "sha": "ea0b948c12304e4b2af10cca6291e5f3c975088a"
+    },
+    {
+      "path": "arm64-v8a/libwallet_engine.a",
+      "size": 30309934,
+      "sha": "10fdbe5f377f1030cc38f00c2b5af4cc8dda4bd2"
+    }
+  ],
+  "top_level_submodules": [
+    {
+      "path": "TMessagesProj/jni/tlottie",
+      "url": "https://github.com/dkaraush/tlottie.git",
+      "sha": "31f1b542f88e7b4be9a01e749920d857535fc715",
+      "repo": "dkaraush/tlottie",
+      "available": true,
+      "tree_sha": "cc72463d709ece54e80f76579635a236813095fc"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/libvpx",
+      "url": "https://github.com/webmproject/libvpx.git",
+      "sha": "6df3ec34557879fff673706f4a1d9fbd0f3a6f0e",
+      "repo": "webmproject/libvpx",
+      "available": true,
+      "tree_sha": "f83d33a1ba18b3a203e43596b5223042b62417a3"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/dav1d",
+      "url": "https://github.com/videolan/dav1d.git",
+      "sha": "54706fc6bc0cdecab7e9593974a4039cc038fca7",
+      "repo": "videolan/dav1d",
+      "available": true,
+      "tree_sha": "37c883895a0fe6cf3fdf3f975525fe8beefdd9c2"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/ffmpeg",
+      "url": "https://github.com/FFmpeg/FFmpeg.git",
+      "sha": "8dca1586f468bfcbb78ae3ed618af1361d9f140a",
+      "repo": "FFmpeg/FFmpeg",
+      "available": true,
+      "tree_sha": "189a6ed0f5627a05bdf006d8e47655bff648f9ec"
+    },
+    {
+      "path": "TMessagesProj/lib/jlatexmath",
+      "url": "https://github.com/dkaraush/jlatexmath-android.git",
+      "sha": "919e50b2f6f64b04b712cdb13d558ff9ecf9c8ed",
+      "repo": "dkaraush/jlatexmath-android",
+      "available": true,
+      "tree_sha": "235077432d79d7401678fe21be366876ccf930b4"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/ogg",
+      "url": "https://github.com/xiph/ogg.git",
+      "sha": "be05b13e98b048f0b5a0f5fa8ce514d56db5f822",
+      "repo": "xiph/ogg",
+      "available": true,
+      "tree_sha": "75dba213d02446d830468c75a23a53625982acc8"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/opusfile",
+      "url": "https://github.com/xiph/opusfile.git",
+      "sha": "a55c164e9891a9326188b7d4d216ec9a88373739",
+      "repo": "xiph/opusfile",
+      "available": true,
+      "tree_sha": "63c0797d3e34c6d8c6fb73b27b4f4b41ba316a68"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/opus",
+      "url": "https://github.com/xiph/opus.git",
+      "sha": "22244de5a79bd1d6d623c32e72bf1954b56235be",
+      "repo": "xiph/opus",
+      "available": true,
+      "tree_sha": "a5e21b6751d8f187b83ad9d5f3a57aab801cf722"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/libyuv",
+      "url": "https://chromium.googlesource.com/libyuv/libyuv",
+      "sha": "28ce69c2744a6aafdb58564e7b884aec3f66be5f",
+      "availability": "non-GitHub; verify separately"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/openh264",
+      "url": "https://github.com/cisco/openh264.git",
+      "sha": "652bdb7719f30b52b08e506645a7322ff1b2cc6f",
+      "repo": "cisco/openh264",
+      "available": true,
+      "tree_sha": "a13ae6006ce07d60dd6fd3bd7db2912375b839d2"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/boringssl",
+      "url": "https://github.com/google/boringssl.git",
+      "sha": "2b44a3701a4788e1ef866ddc7f143060a3d196c9",
+      "repo": "google/boringssl",
+      "available": true,
+      "tree_sha": "96423d314fd766223b2e2a015fe3aec4b617b7a1"
+    },
+    {
+      "path": "TMessagesProj/jni/td",
+      "url": "https://github.com/tdlib/td.git",
+      "sha": "022d60202e446ad1287b9fb68e687c8a0760788b",
+      "repo": "tdlib/td",
+      "available": true,
+      "tree_sha": "5026857ff0268793a09ba4218fa279029e5e5806"
+    },
+    {
+      "path": "TMessagesProj_Modules/media",
+      "url": "https://github.com/Arseny271/media.git",
+      "sha": "09b6c97c0d691c50cd4541e1573995d4066d6f5c",
+      "repo": "Arseny271/media",
+      "available": true,
+      "tree_sha": "fc88863f0bba4b5202bd8889709e4d4a6ab7b718"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/absl",
+      "url": "https://github.com/abseil/abseil-cpp.git",
+      "sha": "54fac219c4ef0bc379dfffb0b8098725d77ac81b",
+      "repo": "abseil/abseil-cpp",
+      "available": true,
+      "tree_sha": "78fbfaf2992016f42178c53af2a825ef4189114f"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/wamr",
+      "url": "https://github.com/wasm-micro-runtime/wasm-micro-runtime.git",
+      "sha": "25bd7eb63e828e4bd242cc9b38d260b4b31c6605",
+      "repo": "wasm-micro-runtime/wasm-micro-runtime",
+      "available": true,
+      "tree_sha": "6e277d2ae70da4a2269cbd5300ec3b49ebc71194"
+    },
+    {
+      "path": "TMessagesProj/jni/tgcalls",
+      "url": "https://github.com/TelegramMessenger/tgcalls.git",
+      "sha": "545f5ae599f8282e1ae3f38aaff166d179d75703",
+      "repo": "TelegramMessenger/tgcalls",
+      "available": true,
+      "tree_sha": "09f5bc2b99b37140f3b8b6fb05c5a334f062705d"
+    },
+    {
+      "path": "TMessagesProj/jni/wallet-engine",
+      "url": "https://github.com/dkaraush/wallet-engine.git",
+      "sha": "5c65e47cb8d68727c20d89382d0bc51292486b9a",
+      "repo": "dkaraush/wallet-engine",
+      "available": true,
+      "tree_sha": "895faf7c2cfad9b91027807217209260fc8c0510"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/boost-regex",
+      "url": "https://github.com/boostorg/regex.git",
+      "sha": "4cbcd3078e6ae10d05124379623a1bf03fcb9350",
+      "repo": "boostorg/regex",
+      "available": true,
+      "tree_sha": "6846eb0f17ae4fa068bac96a3f76019360a6cc67"
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/libprisma",
+      "url": "https://github.com/TelegramMessenger/libprisma.git",
+      "sha": "94640c63c20eacdf70e37e23198d9ab53c802ebd",
+      "repo": "TelegramMessenger/libprisma",
+      "available": true,
+      "tree_sha": "e5c8b3cd1310b39dd296b691d779f30cbf70e7a1"
+    },
+    {
+      "path": "TMessagesProj/jni/twidget/twidget",
+      "url": "https://github.com/TelegramMessenger/twidget.git",
+      "sha": "4769d72c5c5a9bace3c7bd8b6308cb79bc150bab",
+      "repo": "TelegramMessenger/twidget",
+      "available": true,
+      "tree_sha": "19ed67cf498fe3e8dd3e0646b915d522062a1a82"
+    },
+    {
+      "path": "TMessagesProj/jni/twidget/widget-sandbox",
+      "url": "https://github.com/TelegramMessenger/widget-sandbox.git",
+      "sha": "c498cefddefaba765282c9f3ab0b330f4bc990f6",
+      "repo": "TelegramMessenger/widget-sandbox",
+      "available": true,
+      "tree_sha": "2f86dfe82f9343fb8f7f76ce6485f2717946f784"
+    }
+  ],
+  "nested_gitmodules": [
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/opus",
+      "repo": "xiph/opus",
+      "sha": "22244de5a79bd1d6d623c32e72bf1954b56235be",
+      "has_gitmodules": true,
+      "content": ""
+    },
+    {
+      "path": "TMessagesProj/jni/twidget/widget-sandbox",
+      "repo": "TelegramMessenger/widget-sandbox",
+      "sha": "c498cefddefaba765282c9f3ab0b330f4bc990f6",
+      "has_gitmodules": true,
+      "content": "[submodule \"packages/ios/Sources/CQuickJS/quickjs\"]\n\tpath = packages/ios/Sources/CQuickJS/quickjs\n\turl = https://github.com/TelegramMessenger/quickjs.git\n"
+    }
+  ],
+  "quickjs": {
+    "url": "https://github.com/TelegramMessenger/quickjs.git",
+    "sha": "ca3594dae5fd0dd6d667be74a322e8e935a2d217",
+    "tree_sha": "8e75e799021263c0675783b1036bcd5a1a858047",
+    "available": true
+  },
+  "libyuv": {
+    "url": "https://chromium.googlesource.com/libyuv/libyuv/+/28ce69c2744a6aafdb58564e7b884aec3f66be5f?format=JSON",
+    "status": 200,
+    "commit": "28ce69c2744a6aafdb58564e7b884aec3f66be5f",
+    "tree": "589390a5b58694f4d8e9f2bcd42c656aec258958"
+  },
+  "limitations": [
+    "API metadata checks prove pinned commits accessible at check time, not recursive Git clone success",
+    "No binary .a content/architecture validation performed in this audit",
+    "Disk metadata excludes git object storage, filesystem overhead, Gradle/Maven cache and build outputs",
+    "Root native flags include debug symbols/full LTO, but voip CMAKE_CXX_FLAGS resets its C++ flags without flto",
+    "No full Android build benchmark or peak RAM/time measurement"
+  ]
+}

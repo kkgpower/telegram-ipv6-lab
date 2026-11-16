@@ -1,0 +1,253 @@
+{
+  "scope": "GitHub submodule file payload only; excludes libyuv, nested module contents, git object/history storage, allocation overhead, SDK/cache/intermediates",
+  "source_commit": "e3bde6d2a7a2835ac2a36754c662dbc89715b160",
+  "modules": [
+    {
+      "path": "TMessagesProj/jni/tlottie",
+      "repo": "dkaraush/tlottie",
+      "sha": "31f1b542f88e7b4be9a01e749920d857535fc715",
+      "tree_sha": "cc72463d709ece54e80f76579635a236813095fc",
+      "status": "ok",
+      "metadata_bytes": 31244,
+      "truncated": false,
+      "tracked_files": 105,
+      "total_tracked_file_bytes": 3849631,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/libvpx",
+      "repo": "webmproject/libvpx",
+      "sha": "6df3ec34557879fff673706f4a1d9fbd0f3a6f0e",
+      "tree_sha": "f83d33a1ba18b3a203e43596b5223042b62417a3",
+      "status": "ok",
+      "metadata_bytes": 320262,
+      "truncated": false,
+      "tracked_files": 1258,
+      "total_tracked_file_bytes": 24795211,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/dav1d",
+      "repo": "videolan/dav1d",
+      "sha": "54706fc6bc0cdecab7e9593974a4039cc038fca7",
+      "tree_sha": "37c883895a0fe6cf3fdf3f975525fe8beefdd9c2",
+      "status": "ok",
+      "metadata_bytes": 87840,
+      "truncated": false,
+      "tracked_files": 359,
+      "total_tracked_file_bytes": 12105414,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/ffmpeg",
+      "repo": "FFmpeg/FFmpeg",
+      "sha": "8dca1586f468bfcbb78ae3ed618af1361d9f140a",
+      "tree_sha": "189a6ed0f5627a05bdf006d8e47655bff648f9ec",
+      "status": "ok",
+      "metadata_bytes": 2392692,
+      "truncated": false,
+      "tracked_files": 10140,
+      "total_tracked_file_bytes": 88304734,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/lib/jlatexmath",
+      "repo": "dkaraush/jlatexmath-android",
+      "sha": "919e50b2f6f64b04b712cdb13d558ff9ecf9c8ed",
+      "tree_sha": "235077432d79d7401678fe21be366876ccf930b4",
+      "status": "ok",
+      "metadata_bytes": 160362,
+      "truncated": false,
+      "tracked_files": 451,
+      "total_tracked_file_bytes": 4761530,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/ogg",
+      "repo": "xiph/ogg",
+      "sha": "be05b13e98b048f0b5a0f5fa8ce514d56db5f822",
+      "tree_sha": "75dba213d02446d830468c75a23a53625982acc8",
+      "status": "ok",
+      "metadata_bytes": 30156,
+      "truncated": false,
+      "tracked_files": 125,
+      "total_tracked_file_bytes": 734607,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/opusfile",
+      "repo": "xiph/opusfile",
+      "sha": "a55c164e9891a9326188b7d4d216ec9a88373739",
+      "tree_sha": "63c0797d3e34c6d8c6fb73b27b4f4b41ba316a68",
+      "status": "ok",
+      "metadata_bytes": 13277,
+      "truncated": false,
+      "tracked_files": 50,
+      "total_tracked_file_bytes": 587034,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/xiph/opus",
+      "repo": "xiph/opus",
+      "sha": "22244de5a79bd1d6d623c32e72bf1954b56235be",
+      "tree_sha": "a5e21b6751d8f187b83ad9d5f3a57aab801cf722",
+      "status": "ok",
+      "metadata_bytes": 188012,
+      "truncated": false,
+      "tracked_files": 755,
+      "total_tracked_file_bytes": 19559201,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/openh264",
+      "repo": "cisco/openh264",
+      "sha": "652bdb7719f30b52b08e506645a7322ff1b2cc6f",
+      "tree_sha": "a13ae6006ce07d60dd6fd3bd7db2912375b839d2",
+      "status": "ok",
+      "metadata_bytes": 220275,
+      "truncated": false,
+      "tracked_files": 740,
+      "total_tracked_file_bytes": 72609976,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/boringssl",
+      "repo": "google/boringssl",
+      "sha": "2b44a3701a4788e1ef866ddc7f143060a3d196c9",
+      "tree_sha": "96423d314fd766223b2e2a015fe3aec4b617b7a1",
+      "status": "ok",
+      "metadata_bytes": 2211358,
+      "truncated": false,
+      "tracked_files": 7898,
+      "total_tracked_file_bytes": 138298464,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/td",
+      "repo": "tdlib/td",
+      "sha": "022d60202e446ad1287b9fb68e687c8a0760788b",
+      "tree_sha": "5026857ff0268793a09ba4218fa279029e5e5806",
+      "status": "ok",
+      "metadata_bytes": 395278,
+      "truncated": false,
+      "tracked_files": 1662,
+      "total_tracked_file_bytes": 29407422,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj_Modules/media",
+      "repo": "Arseny271/media",
+      "sha": "09b6c97c0d691c50cd4541e1573995d4066d6f5c",
+      "tree_sha": "fc88863f0bba4b5202bd8889709e4d4a6ab7b718",
+      "status": "ok",
+      "metadata_bytes": 2388450,
+      "truncated": false,
+      "tracked_files": 6708,
+      "total_tracked_file_bytes": 530238308,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/absl",
+      "repo": "abseil/abseil-cpp",
+      "sha": "54fac219c4ef0bc379dfffb0b8098725d77ac81b",
+      "tree_sha": "78fbfaf2992016f42178c53af2a825ef4189114f",
+      "status": "ok",
+      "metadata_bytes": 398404,
+      "truncated": false,
+      "tracked_files": 1517,
+      "total_tracked_file_bytes": 10120497,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/wamr",
+      "repo": "wasm-micro-runtime/wasm-micro-runtime",
+      "sha": "25bd7eb63e828e4bd242cc9b38d260b4b31c6605",
+      "tree_sha": "6e277d2ae70da4a2269cbd5300ec3b49ebc71194",
+      "status": "ok",
+      "metadata_bytes": 657893,
+      "truncated": false,
+      "tracked_files": 1894,
+      "total_tracked_file_bytes": 20467071,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/tgcalls",
+      "repo": "TelegramMessenger/tgcalls",
+      "sha": "545f5ae599f8282e1ae3f38aaff166d179d75703",
+      "tree_sha": "09f5bc2b99b37140f3b8b6fb05c5a334f062705d",
+      "status": "ok",
+      "metadata_bytes": 90008,
+      "truncated": false,
+      "tracked_files": 319,
+      "total_tracked_file_bytes": 2914375,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/wallet-engine",
+      "repo": "dkaraush/wallet-engine",
+      "sha": "5c65e47cb8d68727c20d89382d0bc51292486b9a",
+      "tree_sha": "895faf7c2cfad9b91027807217209260fc8c0510",
+      "status": "ok",
+      "metadata_bytes": 241925,
+      "truncated": false,
+      "tracked_files": 745,
+      "total_tracked_file_bytes": 5688026,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/boost-regex",
+      "repo": "boostorg/regex",
+      "sha": "4cbcd3078e6ae10d05124379623a1bf03fcb9350",
+      "tree_sha": "6846eb0f17ae4fa068bac96a3f76019360a6cc67",
+      "status": "ok",
+      "metadata_bytes": 108143,
+      "truncated": false,
+      "tracked_files": 395,
+      "total_tracked_file_bytes": 4632275,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/third_party/libprisma",
+      "repo": "TelegramMessenger/libprisma",
+      "sha": "94640c63c20eacdf70e37e23198d9ab53c802ebd",
+      "tree_sha": "e5c8b3cd1310b39dd296b691d779f30cbf70e7a1",
+      "status": "ok",
+      "metadata_bytes": 9469,
+      "truncated": false,
+      "tracked_files": 34,
+      "total_tracked_file_bytes": 785327,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/twidget/twidget",
+      "repo": "TelegramMessenger/twidget",
+      "sha": "4769d72c5c5a9bace3c7bd8b6308cb79bc150bab",
+      "tree_sha": "19ed67cf498fe3e8dd3e0646b915d522062a1a82",
+      "status": "ok",
+      "metadata_bytes": 548817,
+      "truncated": false,
+      "tracked_files": 1987,
+      "total_tracked_file_bytes": 11700428,
+      "gitlinks": []
+    },
+    {
+      "path": "TMessagesProj/jni/twidget/widget-sandbox",
+      "repo": "TelegramMessenger/widget-sandbox",
+      "sha": "c498cefddefaba765282c9f3ab0b330f4bc990f6",
+      "tree_sha": "2f86dfe82f9343fb8f7f76ce6485f2717946f784",
+      "status": "ok",
+      "metadata_bytes": 511502,
+      "truncated": false,
+      "tracked_files": 1611,
+      "total_tracked_file_bytes": 28089613,
+      "gitlinks": [
+        {
+          "path": "packages/ios/Sources/CQuickJS/quickjs",
+          "sha": "ca3594dae5fd0dd6d667be74a322e8e935a2d217"
+        }
+      ]
+    }
+  ],
+  "total_complete_module_file_bytes": 1009649144,
+  "complete_modules": 20
+}

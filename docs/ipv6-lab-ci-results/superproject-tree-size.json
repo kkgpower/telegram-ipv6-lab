@@ -1,0 +1,74 @@
+{
+  "source_url": "https://api.github.com/repos/kkgpower/telegram-ipv6-lab/git/trees/e3bde6d2a7a2835ac2a36754c662dbc89715b160?recursive=1",
+  "metadata_bytes": 4265753,
+  "truncated": false,
+  "entries": 14920,
+  "tracked_files": 14186,
+  "total_tracked_file_bytes": 443714072,
+  "bytes_by_top_level": {
+    ".gitignore": 309,
+    ".gitmodules": 2983,
+    "Dockerfile": 2926,
+    "LICENSE": 18092,
+    "README.md": 2848,
+    "TMessagesProj": 380523787,
+    "TMessagesProj_App": 14880,
+    "TMessagesProj_AppHockeyApp": 57075,
+    "TMessagesProj_AppHuawei": 48152,
+    "TMessagesProj_AppStandalone": 632317,
+    "TMessagesProj_AppTests": 62089586,
+    "Tools": 55917,
+    "apkdiff.py": 1773,
+    "apkfrombundle.py": 2406,
+    "build.gradle": 2232,
+    "buildSrc": 113570,
+    "docs": 36175,
+    "gradle.properties": 1323,
+    "gradle": 59737,
+    "gradlew": 5080,
+    "settings.gradle": 799,
+    "tools": 42105
+  },
+  "largest_files": [
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libwallet_engine.a",
+      "size": 30309934
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/x86_64/libwallet_engine.a",
+      "size": 27248024
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/armeabi-v7a/libwallet_engine.a",
+      "size": 26384044
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/x86/libwallet_engine.a",
+      "size": 24629758
+    },
+    {
+      "path": "TMessagesProj/jni/sqlite/sqlite3.c",
+      "size": 8549001
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/x86_64/libcrypto.a",
+      "size": 4201658
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libavcodec.a",
+      "size": 4172660
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/arm64-v8a/libcrypto.a",
+      "size": 4106478
+    },
+    {
+      "path": "TMessagesProj/src/main/assets/emoji.pack",
+      "size": 3492338
+    },
+    {
+      "path": "TMessagesProj/jni/prebuild/lib/armeabi-v7a/libavcodec.a",
+      "size": 3292676
+    }
+  ]
+}

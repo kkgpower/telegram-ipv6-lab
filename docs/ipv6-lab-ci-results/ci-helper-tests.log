@@ -1,0 +1,22 @@
+test_cleanup_does_not_follow_a_symlinked_project_parent (test_ci_build_apk.CIBuildGuards.test_cleanup_does_not_follow_a_symlinked_project_parent) ... ok
+test_cleanup_does_not_follow_symlinks_or_remove_unrelated_paths (test_ci_build_apk.CIBuildGuards.test_cleanup_does_not_follow_symlinks_or_remove_unrelated_paths) ... ok
+test_cleanup_rejects_unsigned_event_before_removing_files (test_ci_build_apk.CIBuildGuards.test_cleanup_rejects_unsigned_event_before_removing_files) ... ok
+test_cleanup_requires_matching_workspace (test_ci_build_apk.CIBuildGuards.test_cleanup_requires_matching_workspace) ... ok
+test_commit_must_belong_to_ci_branch (test_ci_build_apk.CIBuildGuards.test_commit_must_belong_to_ci_branch) ... ok
+test_explicit_build_dispatch_context (test_ci_build_apk.CIBuildGuards.test_explicit_build_dispatch_context) ... ok
+test_explicit_build_tag_context (test_ci_build_apk.CIBuildGuards.test_explicit_build_tag_context) ... ok
+test_foreign_repository_rejected (test_ci_build_apk.CIBuildGuards.test_foreign_repository_rejected) ... ok
+test_invalid_base64_stops_before_key_creation (test_ci_build_apk.CIBuildGuards.test_invalid_base64_stops_before_key_creation) ... ok
+test_local_cleanup_entry_is_rejected (test_ci_build_apk.CIBuildGuards.test_local_cleanup_entry_is_rejected) ... ok
+test_missing_secrets_stop_before_key_creation (test_ci_build_apk.CIBuildGuards.test_missing_secrets_stop_before_key_creation) ... ok
+test_ordinary_branch_push_does_not_sign (test_ci_build_apk.CIBuildGuards.test_ordinary_branch_push_does_not_sign) ... ok
+test_source_commit_mismatch_rejected (test_ci_build_apk.CIBuildGuards.test_source_commit_mismatch_rejected) ... ok
+test_temp_must_not_contain_or_be_inside_checkout (test_ci_build_apk.CIBuildGuards.test_temp_must_not_contain_or_be_inside_checkout) ... ok
+test_tracked_source_changes_rejected (test_ci_build_apk.CIBuildGuards.test_tracked_source_changes_rejected) ... ok
+test_validation_dispatch_does_not_sign (test_ci_build_apk.CIBuildGuards.test_validation_dispatch_does_not_sign) ... ok
+test_wrong_workflow_ref_rejected (test_ci_build_apk.CIBuildGuards.test_wrong_workflow_ref_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.014s
+
+OK
