@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-feature android:name="android.hardware.location.network" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+
+    <application
+        android:icon="@drawable/ipv6_lab_icon"
+        android:roundIcon="@drawable/ipv6_lab_icon"
+        android:label="@string/ipv6_lab_app_name"
+        tools:replace="android:icon,android:roundIcon,android:label">
+
+        <activity-alias
+            android:name="org.telegram.messenger.DefaultIcon"
+            android:icon="@drawable/ipv6_lab_icon"
+            android:label="@string/ipv6_lab_app_name"
+            tools:replace="android:icon,android:label">
+            <meta-data android:name="android.app.shortcuts" tools:node="remove" />
+        </activity-alias>
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            tools:node="remove" />
+        <service
+            android:name="org.telegram.messenger.GcmPushListenerService"
+            tools:node="remove" />
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" tools:node="remove" />
+        <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
+        <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+    </application>
+</manifest>

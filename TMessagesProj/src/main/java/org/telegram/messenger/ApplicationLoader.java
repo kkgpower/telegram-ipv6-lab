@@ -114,6 +114,9 @@ public class ApplicationLoader extends Application {
     }
 
     protected PushListenerController.IPushListenerServiceProvider onCreatePushProvider() {
+        if (BuildVars.IPV6_LAB_BUILD) {
+            return Ipv6LabPushListenerServiceProvider.INSTANCE;
+        }
         return PushListenerController.GooglePushListenerServiceProvider.INSTANCE;
     }
 
@@ -415,7 +418,7 @@ public class ApplicationLoader extends Application {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("No valid " + getPushProvider().getLogTitle() + " APK found.");
                 }
-                SharedConfig.pushStringStatus = "__NO_GOOGLE_PLAY_SERVICES__";
+                SharedConfig.pushStringStatus = BuildVars.IPV6_LAB_BUILD ? "__IPV6_LAB_PUSH_DISABLED__" : "__NO_GOOGLE_PLAY_SERVICES__";
                 PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
             }
         }, 1000);

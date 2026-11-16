@@ -1,0 +1,32 @@
+{
+  "status": "installed_and_validated",
+  "source": "GitHub connector, official adoptium/temurin17-binaries release metadata",
+  "metadata_url": "https://api.github.com/repos/adoptium/temurin17-binaries/releases/latest",
+  "release_url": "https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.21%2B9",
+  "release_id": 421004792,
+  "release_tag": "jdk-17.0.21+9",
+  "release_published_at": "2026-10-22T17:28:09Z",
+  "asset_id": 666563450,
+  "asset_name": "OpenJDK17U-jdk_x64_linux_hotspot_17.0.21_9.tar.gz",
+  "download_url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jdk_x64_linux_hotspot_17.0.21_9.tar.gz",
+  "expected_size_bytes": 193594705,
+  "expected_sha256": "8b9b611d917e3dfd8419d3566b5949226f69b052fed7e109c1368add1dfe8711",
+  "checksum_source": "GitHub release asset digest field",
+  "archive_path": "/workspace/android-lab/tools/OpenJDK17U-jdk_x64_linux_hotspot_17.0.21_9.tar.gz",
+  "install_path": "/workspace/android-lab/tools/jdk-17",
+  "verified": true,
+  "actual_sha256": "8b9b611d917e3dfd8419d3566b5949226f69b052fed7e109c1368add1dfe8711",
+  "actual_size_bytes": 193594705,
+  "validated_at_utc": "2026-11-15T21:23:57.473254+00:00",
+  "versions": {
+    "java": "openjdk version \"17.0.21\" 2026-10-20\nOpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)\nOpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)",
+    "javac": "javac 17.0.21",
+    "jlink": "17.0.21",
+    "jar": "jar 17.0.21"
+  },
+  "javac_compile_and_run_output": "17.0.21",
+  "system_java_modified": false,
+  "metadata_release_url": "https://api.github.com/repos/adoptium/temurin17-binaries/releases/421004792",
+  "asset_api_url": "https://api.github.com/repos/adoptium/temurin17-binaries/releases/assets/666563450",
+  "jlink_image_java_version": "openjdk version \"17.0.21\" 2026-10-20\nOpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)\nOpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode)"
+}

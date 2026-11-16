@@ -1,0 +1,6 @@
+{
+  "purpose": "Unofficial local IPv6 Lab test signing key; not a Telegram certificate",
+  "alias": "ipv6lab",
+  "certificate_sha256": "f20e07db7fb30e7dfc8f79785ca390b99dfd400b7b32caa68e5f2adb1828a3b5",
+  "signing_environment_file": "/workspace/android-lab/private/signing.env"
+}

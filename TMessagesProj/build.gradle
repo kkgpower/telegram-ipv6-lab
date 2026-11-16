@@ -1,5 +1,7 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
+apply from: rootProject.file('tools/ipv6-lab/profile.gradle')
+
 apply plugin: 'com.android.library'
 apply plugin: 'org.telegram.build-plugin'
 apply plugin: 'idea'
@@ -148,6 +150,13 @@ android {
         minSdkVersion 23
         targetSdkVersion 36
 
+        buildConfigField 'boolean', 'IPV6_LAB_BUILD', ipv6LabBuild.toString()
+        buildConfigField 'int', 'LAB_TELEGRAM_API_ID', ipv6LabBuild ? ipv6LabParameters.apiId.toString() : '0'
+        buildConfigField 'String', 'LAB_TELEGRAM_API_HASH', ipv6LabBuild ? '"' + ipv6LabParameters.apiHash + '"' : '""'
+        if (ipv6LabBuild) {
+            ndk.abiFilters 'arm64-v8a'
+        }
+
         vectorDrawables.generatedDensities = ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi']
 
         multiDexEnabled true
@@ -242,6 +251,12 @@ android {
     }
 
     namespace 'org.telegram.messenger'
+
+    if (ipv6LabBuild) {
+        variantFilter { variant ->
+            setIgnore(variant.buildType.name != 'debug')
+        }
+    }
 }
 
 
@@ -255,7 +270,9 @@ def getProps(String propName) {
         return "";
     }
 }
-apply plugin: 'com.google.gms.google-services'
+if (!ipv6LabBuild) {
+    apply plugin: 'com.google.gms.google-services'
+}
 
 task checkVisibility {
     doFirst {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ipv6_lab_app_name" translatable="false">IPv6 Lab (unofficial)</string>
+    <string name="AppName" translatable="false">IPv6 Lab (unofficial)</string>
+    <string name="AppNameBeta" translatable="false">IPv6 Lab (unofficial)</string>
+</resources>

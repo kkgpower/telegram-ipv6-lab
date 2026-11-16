@@ -1,9 +1,15 @@
 include ':TMessagesProj'
 include ':TMessagesProj_App'
-include ':TMessagesProj_AppHuawei'
-include ':TMessagesProj_AppHockeyApp'
-include ':TMessagesProj_AppStandalone'
-include ':TMessagesProj_AppTests'
+def ipv6LabValue = providers.gradleProperty('IPV6_LAB').orNull
+if (ipv6LabValue != null && !(ipv6LabValue in ['true', 'false'])) {
+    throw new GradleException('IPV6_LAB must be true or false')
+}
+if (ipv6LabValue != 'true') {
+    include ':TMessagesProj_AppHuawei'
+    include ':TMessagesProj_AppHockeyApp'
+    include ':TMessagesProj_AppStandalone'
+    include ':TMessagesProj_AppTests'
+}
 include ':jlatexmath'
 project(':jlatexmath').projectDir = file('TMessagesProj/lib/jlatexmath/jlatexmath')
 

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="telegram_account_type" translatable="false">org.telegram.messenger</string>
+</resources>

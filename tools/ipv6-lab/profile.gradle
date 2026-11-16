@@ -1,0 +1,130 @@
+// Opt-in local test profile. Never print API parameters or signing passwords.
+final class Ipv6LabParameters {
+    final int apiId
+    final String apiHash
+    final File keyStore
+    final String storePassword
+    final String keyPassword
+    final String keyAlias
+
+    Ipv6LabParameters(int apiId, String apiHash, File keyStore,
+                      String storePassword, String keyPassword, String keyAlias) {
+        this.apiId = apiId
+        this.apiHash = apiHash
+        this.keyStore = keyStore
+        this.storePassword = storePassword
+        this.keyPassword = keyPassword
+        this.keyAlias = keyAlias
+    }
+
+    @Override
+    String toString() { 'Ipv6LabParameters(<redacted>)' }
+}
+
+def labFlag = providers.gradleProperty('IPV6_LAB').getOrElse('false')
+if (!(labFlag in ['true', 'false'])) {
+    throw new GradleException('IPV6_LAB must be true or false.')
+}
+ext.ipv6LabBuild = labFlag == 'true'
+if (!ipv6LabBuild) {
+    return
+}
+
+if (!rootProject.ext.has('ipv6LabParameters')) {
+    def names = ['TELEGRAM_API_ID', 'TELEGRAM_API_HASH', 'LAB_KEYSTORE',
+                 'LAB_STORE_PASSWORD', 'LAB_KEY_PASSWORD', 'LAB_KEY_ALIAS']
+    def values = names.collectEntries { name ->
+        [(name): providers.environmentVariable(name).orNull]
+    }
+    def missing = names.findAll { name -> values[name] == null || values[name].isEmpty() }
+    if (!missing.isEmpty()) {
+        throw new GradleException('IPv6 Lab requires environment variables: ' + missing.join(', ') + '.')
+    }
+
+    def apiIdText = values.TELEGRAM_API_ID.trim()
+    if (!(apiIdText ==~ /[1-9][0-9]{0,9}/) || new BigInteger(apiIdText) > Integer.MAX_VALUE) {
+        throw new GradleException('TELEGRAM_API_ID must be a positive 32-bit integer from your own Telegram application.')
+    }
+    def apiHash = values.TELEGRAM_API_HASH.trim().toLowerCase(Locale.ROOT)
+    if (!(apiHash ==~ /[0-9a-f]{32}/)) {
+        throw new GradleException('TELEGRAM_API_HASH must be the 32 hexadecimal characters of your own Telegram application.')
+    }
+
+    // Read the bundled fallback values, so this guard stays in sync with BuildVars.
+    def buildVars = rootProject.file('TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java').getText('UTF-8')
+    def bundledId = buildVars =~ /public static int APP_ID\s*=\s*[^;\n]*?(\d+)\s*;/
+    def bundledHash = buildVars =~ /public static String APP_HASH\s*=\s*[^;\n]*?"([0-9a-fA-F]+)"\s*;/
+    if (!bundledId.find() || !bundledHash.find()) {
+        throw new GradleException('Unable to check bundled Telegram API parameters; review the IPv6 Lab profile.')
+    }
+    if (apiIdText.toInteger() == bundledId.group(1).toInteger()
+            || apiHash.equalsIgnoreCase(bundledHash.group(1))) {
+        throw new GradleException('IPv6 Lab refuses bundled Telegram API parameters; supply your own application credentials.')
+    }
+
+    def keyStoreFile = rootProject.file(values.LAB_KEYSTORE).canonicalFile
+    if (!keyStoreFile.isFile() || !keyStoreFile.canRead()) {
+        throw new GradleException('LAB_KEYSTORE must point to a readable local test keystore.')
+    }
+    def bundledKeyStore = rootProject.file('TMessagesProj/config/release.keystore').canonicalFile
+    def sha256 = { File input ->
+        java.security.MessageDigest.getInstance('SHA-256').digest(input.bytes)
+    }
+    if (keyStoreFile == bundledKeyStore || (bundledKeyStore.isFile()
+            && java.security.MessageDigest.isEqual(sha256(keyStoreFile), sha256(bundledKeyStore)))) {
+        throw new GradleException('IPv6 Lab refuses the repository signing keystore, including copies of it.')
+    }
+    def certificate
+    try {
+        def store = java.security.KeyStore.getInstance(keyStoreFile, values.LAB_STORE_PASSWORD.toCharArray())
+        if (!store.isKeyEntry(values.LAB_KEY_ALIAS)
+                || !(store.getKey(values.LAB_KEY_ALIAS, values.LAB_KEY_PASSWORD.toCharArray()) instanceof java.security.PrivateKey)
+                || store.getCertificate(values.LAB_KEY_ALIAS) == null) {
+            throw new IllegalArgumentException()
+        }
+        certificate = store.getCertificate(values.LAB_KEY_ALIAS)
+        if (certificate instanceof java.security.cert.X509Certificate) {
+            certificate.checkValidity()
+        }
+    } catch (Exception ignored) {
+        throw new GradleException('Cannot open a valid private signing key with LAB_KEYSTORE, LAB_KEY_ALIAS and the supplied passwords.')
+    }
+
+    boolean bundledIdentity = false
+    try {
+        // Read the repository file directly; -P and environment overrides must not
+        // change which bundled signing identity is rejected.
+        def bundledProperties = new Properties()
+        rootProject.file('gradle.properties').withInputStream { bundledProperties.load(it) }
+        def bundledPassword = bundledProperties.getProperty('RELEASE_STORE_PASSWORD')
+        if (bundledPassword == null || bundledPassword.isEmpty()) {
+            throw new IllegalArgumentException()
+        }
+        def bundledStore = java.security.KeyStore.getInstance(bundledKeyStore, bundledPassword.toCharArray())
+        def aliases = bundledStore.aliases()
+        boolean foundCertificate = false
+        while (aliases.hasMoreElements()) {
+            def bundledCertificate = bundledStore.getCertificate(aliases.nextElement())
+            if (bundledCertificate != null) {
+                foundCertificate = true
+                if (java.security.MessageDigest.isEqual(certificate.encoded, bundledCertificate.encoded)
+                        || java.security.MessageDigest.isEqual(certificate.publicKey.encoded, bundledCertificate.publicKey.encoded)) {
+                    bundledIdentity = true
+                }
+            }
+        }
+        if (!foundCertificate) {
+            throw new IllegalArgumentException()
+        }
+    } catch (Exception ignored) {
+        throw new GradleException('Cannot verify the repository signing identity; refusing the IPv6 Lab build.')
+    }
+    if (bundledIdentity) {
+        throw new GradleException('IPv6 Lab refuses the repository signing identity, including repackaged or reissued keys.')
+    }
+
+    rootProject.ext.ipv6LabParameters = new Ipv6LabParameters(
+        apiIdText.toInteger(), apiHash, keyStoreFile,
+        values.LAB_STORE_PASSWORD, values.LAB_KEY_PASSWORD, values.LAB_KEY_ALIAS)
+}
+ext.ipv6LabParameters = rootProject.ext.ipv6LabParameters

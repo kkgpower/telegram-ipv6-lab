@@ -1,0 +1,82 @@
+[
+  {
+    "package": "platforms;android-36",
+    "host": "all",
+    "archive": "platform-36-ext19_r01.zip",
+    "download_bytes": 66057671,
+    "checksum": "52e240c229cf2ad561ee262ebdfff266e180c585",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "platforms;android-36",
+    "host": "all",
+    "archive": "platform-36-ext18_r01.zip",
+    "download_bytes": 66044874,
+    "checksum": "33a7af9f531f6ce67b3ec357f619e69aa0a95c8a",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "platforms;android-36",
+    "host": "all",
+    "archive": "platform-36_r02.zip",
+    "download_bytes": 65878410,
+    "checksum": "2c1a80dd4d9f7d0e6dd336ec603d9b5c55a6f576",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "ndk;27.2.12479018",
+    "host": "linux",
+    "archive": "android-ndk-r27c-linux.zip",
+    "download_bytes": 663987688,
+    "checksum": "090e8083a715fdb1a3e402d0763c388abb03fb4e",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "build-tools;36.0.0",
+    "host": "linux",
+    "archive": "build-tools_r36_linux.zip",
+    "download_bytes": 63737259,
+    "checksum": "b0b6376977657e8ad9b969bacf4093601da2c6fb",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "cmdline-tools;latest",
+    "host": "linux",
+    "archive": "commandlinetools-linux-16111833_latest.zip",
+    "download_bytes": 181052239,
+    "checksum": "e025545c62a8e64c7559119566a569fb1dec5f60",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "cmake;3.22.1",
+    "host": "linux",
+    "archive": "cmake-3.22.1-linux.zip",
+    "download_bytes": 22308647,
+    "checksum": "fd0a48b4a758310df8c7aa51f59840ed48fe7ed8",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "platform-tools",
+    "host": "linux",
+    "archive": "platform-tools_r37.0.3-linux.zip",
+    "download_bytes": 9571024,
+    "checksum": "e1579b288a7ae4e9bc28dedec6a154d78b3c04ed",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "platform-tools",
+    "host": "linux",
+    "archive": "platform-tools_r37.0.1-linux.zip",
+    "download_bytes": 9054187,
+    "checksum": "477254aa5f903c15cf51001717bdf347fb6b53e0",
+    "checksum_type": "sha1"
+  },
+  {
+    "package": "cmdline-tools;22.0",
+    "host": "linux",
+    "archive": "commandlinetools-linux-15859902_latest.zip",
+    "download_bytes": 181833628,
+    "checksum": "040d3996a65543d22ec4bf73e4c37aa37a8d4af4",
+    "checksum_type": "sha1"
+  }
+]
